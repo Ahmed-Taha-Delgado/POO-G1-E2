@@ -7,7 +7,8 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{biblatex}
-\addbibresource{bib/protocolo.bib}
+\usepackage{pdfpages}
+\addbibresource{bib/referencias.bib}
 
 \begin{document}
 
@@ -22,9 +23,9 @@
 \item \textbf{Objetivos:} Aprender las funciones básicas de LaTex y GitHub para el desarrollo de documentos colaborativos.
 \end{itemize}
 \section{Marco Teórico}
-LaTeX: Es un sistema de gestión y desarrollo de textos basada líneas de código y reglas de sintaxis básicas para la edición de un documento.
+GitHub: Es una herramienta en la nube, que lleva el control de las versiones de un archivo (qué se modificó y quién lo hizo), permite la colaboración en equipo para crear proyectos.~\cite{guiagit}
 
-GitHub: Es una herramienta que lleva el control de las versiones de un archivo (qué se modificó y quién lo hizo), permite la colaboración en equipo para crear proyectos.
+LaTeX: Es un sistema de gestión y desarrollo de textos de alta tipografía, basado en líneas de código y reglas de sintaxis básicas para la edición de un documento.~\cite{guialatex}
 
 \section{Desarrollo}
 Para iniciar el desarrollo de la práctica, hicimos un repositorio de GitHub y nos agregamos como colaboradores para que todos podamos ver y editar el repositorio. Creamos las cuentas de Overleaf que usaremos para hacer las prácticas de LaTeX y comenzamos a hacer el documento con la invitación de la cuenta que tiene Overleaf premium.
@@ -51,11 +52,42 @@ Finalmente sincronizamos una de las cuentas a Github y mediante los comandos de 
 
 A continuación están las capturas de como subimos el código de overleaf desde comandos de git al repositorio:
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{Imagenes/clon.jpeg}
+    \caption{Se clona el overleaf a un repositorio local}
+    \label{fig:colaboradores}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{Imagenes/pull.jpeg}
+    \caption{Se actualizan los cambios hechos en el repositorio de overleaf}
+    \label{fig:colaboradores}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{Imagenes/añadir.jpeg}
+    \caption{Se añaden los elementos del overleaf a una carpeta del repositorio clonado de GitHub}
+    \label{fig:colaboradores}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{Imagenes/ultimo.png}
+    \caption{El repositorio en Git ya con toda la información subida con comandos}
+    \label{fig:colaboradores}
+\end{figure}
+
+\clearpage
+
 \section{Conclusiones}
 La implementación de LaTeX nos facilita la elaboración de los reportes de practicas de una manera mas eficiente, ordenada y ofreciendo un formato estructurado. Los objetivos de la práctica se han cumplido ya que fuimos capaces de hacer un documento compartido en Overleaf y lo subimos a un repositorio en GitHub.
 
-\section{Referencias}
 \printbibliography
+
+\clearpage
 
 \section{Reto para token}
 
