@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Pascal{
+public class TrianguloPascal{
 
     public static void main(String[] args){
 
@@ -15,7 +15,7 @@ public class Pascal{
             }
 
             for(int j=0;j<=i;j++){
-                System.out.print(trianguloPascal(i,j)+" ");
+                System.out.print(Pascal(i,j)+" ");
             }
             System.out.println("");
         }
@@ -24,22 +24,14 @@ public class Pascal{
 
     }
 
-    public static int trianguloPascal(int n, int j){
+    public static int Pascal(int n, int j){
 
         if(j==0 || j==n){
             return 1;
         }
 
-        return trianguloPascal(n-1,j-1)+trianguloPascal(n-1,j);
-
+        return Pascal(n-1,j-1)+Pascal(n-1,j);
+        
     }
-
-
-
-
-
-
-
-
 
 }
