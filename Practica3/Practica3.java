@@ -12,7 +12,11 @@ public class Practica3 {
             System.out.println("Ingrese una cadena al ejecutar");
         }
 
-        for(String palabra:args){
+        for(int i=0; i<args.length; i++){
+            ingresado.add(args[i]);
+        }
+
+        for(String palabra:ingresado){
             String clave = generaHash(palabra);
             hash.put(clave, palabra);
         }
