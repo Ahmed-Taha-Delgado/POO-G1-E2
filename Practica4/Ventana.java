@@ -5,7 +5,7 @@ public class Ventana extends JFrame {
     JButton boton;
     
     public Ventana(){
-        JOptionPane.showMessageDialog(null, "Ingre las coordenadas x1 y1 x2 y2");
+        JOptionPane.showMessageDialog(null, "Ingrese las coordenadas x1 y1 x2 y2");
     }
 
     public Ventana(Punto a, Punto b, Mensajes mostrar) {
