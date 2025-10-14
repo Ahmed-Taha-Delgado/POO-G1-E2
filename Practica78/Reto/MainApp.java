@@ -5,17 +5,17 @@ public class MainApp {
     
     public static void main(String[] args) {
         
-        String titulo, autor;
-        int anio;
+        String titulo = "", autor = "";
+        int anio = 0;
 
         ArrayList<Material> listaMateriales = new ArrayList<>();
         Scanner e = new Scanner(System.in);
         
         int opcion;
 
-        do {
+        do {    
             
-            System.out.println("Menu polimorfismo");
+            System.out.println("\nMenu polimorfismo");
             System.out.println("Ingresa que material quieres agregar");
             System.out.println("1) Revista");
             System.out.println("2) Libro");
@@ -51,10 +51,20 @@ public class MainApp {
                     break;
 
                 case 4:
-                    System.out.println(listaMateriales);
+                    if(listaMateriales.isEmpty()){
+                        System.out.println("Sin materiales");
+                        break;
+                    }
+                    System.out.println("Materiales guardados:");
+                    for(Material material : listaMateriales){
+                        System.out.println(material.mostrarInformacion());
+                        System.out.println();
+                    }
                     break;
 
-                
+                case 5:
+                    System.out.println("Saliendo...");
+                    break;
                 default:
                     System.out.println("Opcion invalida");
                     break;
