@@ -17,29 +17,48 @@
 
 \begin{document}
 
-\includegraphics[width=\textwidth]{Practica910/ReporteLatex/Imagenes/interfaz.png}
-
 \tableofcontents
 \clearpage
 
 \section{Introducción}
 
 \begin{itemize}
-\item \textbf{Planteamiento del Problema:} .
+\item \textbf{Planteamiento del Problema:} Se busca la implementación de una aplicación de Dart, que simule los servicios de un taller mecánico mediante diferentes clases en las que se manejarán métodos sobrescritos, excepciones y errores para asegurar un correcto funcionamiento del programa.
 
-\item \textbf{Motivación:} .
+\item \textbf{Motivación:} En esta práctica aprenderemos sobre la gestión de excepciones y errores en Dart para evitar comportamientos inesperados, crasheos del programa o simplemente enviar mensajes claros al usuario cuando ha ocurrido un problema.
 
-\item \textbf{Objetivos:} .
-
+\item \textbf{Objetivos:} Crear un programa que garantice que nuestro programa es estable y sea capaz de responder ante situaciones inesperadas, todo esto con la finalidad de brindar al usuario una mejor experiencia a la hora de ejecutar.
 
 \end{itemize}
+
 \section{Marco Teórico}
-    \begin{itemize}
+\begin{itemize}
+
+    \item \textbf{Flutter y Dart:} Flutter es un kit de herramientas de interfaz de usuario de código abierto desarrollado por \textit{Google} utilizado para crear aplicaciones. Tiene soporte para seis plataformas: iOS, Android, web, Windows, MacOS y Linux.
+
+    Dart es un lenguaje de programación orientado a objetos desarrollado por \textit{Google}, que también permite la programación estructurada. Este lenguaje fue diseñado para crear aplicaciones rápidas y fáciles de mantener. Sigue una sintaxis similar a C y Java.
+
+    Flutter trabaja con el lenguaje Dart, y de esta forma se complementan para crear aplicaciones completas, robustas y eficientes. ~\cite{FlutterDart1} ~\cite{FlutterDart2}
+    
+    \item \textbf{Excepciones y errores:} Una excepción es cuando ocurre un evento que altera el flujo normal del programa en ejecución. Las excepciones ocasionan la finalización abrupta de la ejecución del programa, y muestran la razón por la cual se generó la excepción.
+
+    Un error es un problema, del cual no se puede hacer nada para resolverlo, y suele tratarse de problemas mas profundos que el programador no puede abordar; por ejemplo, un error en la maquina virtual de Java.
+    
+    Existen mecanismos que permiten controlar y manejar cuando se 'lanza' una excepción; de esta manera se puede continuar con la ejecución del programa tomando en cuenta las posibles excepciones que podrían ser lanzadas.
+
+    El manejo de excepciones se realiza con el bloque \textit{try-catch-finally}. Dentro del bloque \textit{try} se coloca el código que podría generar una excepción. En el bloque \textit{catch} se especifica el tipo de excepción que será capturada y lo que realizará el programa en ese caso. En el bloque \textit{finally} se coloca el código que siempre se ejecutará, independientemente de que ocurra el \textit{try} o el \textit{catch}. Estos bloques pueden tener mas de un \textit{catch}, y puede haber bloques sin el bloque \textit{try} (\textit{catch-finally}) o sin el bloque \textit{catch} (\textit{try-finally}). 
+
+    Se puede lanzar una excepción explícitamente, con la palabra reservada \textit{throw}, esto detiene el flujo del programa indicando un problema.
+
+    En Java, se puede declarar que un método podría lanzar excepciones con la palabra reservada \textit{throws}. De esta forma no se manejan las excepciones dentro del método y son trabajo de los métodos que llamen a ese método. Si los métodos que llaman a esas funciones tampoco manejan las excepciones, se llama 'propagación de excepciones', donde la excepción es recorrida hasta el método que la maneje; y si no es manejada, se lanza la excepción y se termina la ejecución del programa como pasaría normalmente.      ~\cite{Excepciones}
 
     
-    \end{itemize}
+
+\end{itemize}
 
 \section{Desarrollo}
+El código proporcionado trae en un solo archivo distintas clases y funciones independientes, las cuales podrán ser usadas por cualquier otra clase y método del mismo código.
+
 
   
 
@@ -60,7 +79,32 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{Imagenes/Resultado.png}
+    \includegraphics[width=0.8\linewidth]{Imagenes/auto.png}
+    \caption*{registro de un automóvil}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Imagenes/moto.png}
+    \caption*{registro de una motocicleta}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Imagenes/camion.png}
+    \caption*{Registro de un camión}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Imagenes/resumen.png}
+    \caption*{Vista de todos los vehículos registrados}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Imagenes/reportes.png}
+    \caption*{Reportes detallados para cada vehículo}
 \end{figure}
 
 
