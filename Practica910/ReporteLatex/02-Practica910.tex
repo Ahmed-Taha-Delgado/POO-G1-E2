@@ -59,7 +59,30 @@
 \section{Desarrollo}
 El código proporcionado trae en un solo archivo distintas clases y funciones independientes, las cuales podrán ser usadas por cualquier otra clase y método del mismo código.
 
+Lo primero es una clase abstracta "ServicioTaller", que se utilizara como interfaz con dos métodos a implementar. Posteriormente, se tiene otra clase abstracta, "Vehiculo", que implementa la primera clase haciendo uso de la palabra reservada 'implements', dentro de esta clase abstracta se tienen tres atributos privados: marca un 'String', modelo un 'String' y anio un 'int'; indicando la privacidad con la barra baja en el nombre, el constructor, los getters, los setters y un método que retorna lo que se obtiene de los getters, interpolando el valor que devuelven a Strings gracias al uso de '\$', el cual es "descripcion".
 
+Los setters de la clase abstracta son donde se implementan las excepciones, ya que dentro de cada uno de estos setters se hace una evaluación, como que la marca y el modelo no esten vacios o que el año sea mayor a 1900, en caso de no cumplir alguna de estas condiciones, se utilizara la palabra reservada 'throw' para 'lanzar' una excepción del tipo "ArgumentError", con un mensaje personalizado dependiendo del setter en el que se haya detectado un error. En caso de que no se cumpla con la condición para lanzar el ArgumentError, se asignara la variable de forma normal.
+
+Luego se encuentra la clase "Auto" la cual hereda de "Vehiculo", la cual añade otro atributo privado de tipo booleano, el cual es el aire acondicionado, su constructor ademas de inicializar su atributo único, se apoya del constructor de la clase padre, haciendo uso de 'super', teniendo ademas su propio set y get para su atributo único, contando ademas con la sobre-escritura de los dos métodos declarados en la interfaz y de "descripcion" de la clase padre, "calcularServicio" cuenta con dos atributos con valores fijos y un tercero el cual cambiara su valor dependiendo de lo que contenga el atributo que representa el aire acondicionado, evaluandolo con una condición ternaria y devolviendo la suma de los tres atributos; "generarReporteServicio" solo devuelve de forma ordenada los atributos del objeto y el valor que regresa "calcularServicio", limitándose a solo mostrar 2 dígitos luego del punto decimal; "descripcion" hace uso del método del mismo nombre de la clase padre y le añade ademas una parte de texto para mostrar si el auto cuenta con aire acondicionado o no, para devolver todo en una sola cadena de caracteres.
+
+Luego se tiene a la clase "Moto" la cual también hereda de "Vehiculo", realiza lo mismo que "Auto" pero intercambiando el aire acondicionado por el cilindrado de tipo 'int', lo que lleva a ciertos cambios, en el set se agrega la evaluación del cilindrado, para en caso de que se intente ingresar un cilindrado negativo, lanzar una excepción del tipo "ArgumentError" con el mensaje de que el cilindrado debe ser positivo, la sobreescritura de "calcularServicio" es bastante parecida a la de "Auto" ya que cuenta con valores fijos y evalua en una condicion ternaria el atributo único de la clase, y en "generarReporteServicio" y "descripcion" se añade la impresión del atributo único.
+
+La ultima clase que se tiene es "Camion" la cual hereda de "Vehiculo" y es muy parecida a "Moto"
+cambiando el cilindrado por la capacidad de toneladas de tipo 'double', su propio constructor que también se apoya del de la clase padre y su propio set y get, teniendo el set una evaluación la cual arrojara un "ArgumentError" con mensaje personalizado en caso de que la capacidad ingresada sea igual o menor que 0, su sobre-escritura de "calcularServicio" cuenta con 3 atributos con un valor fijo y un cuarto atributo cuyo valor dependerá de la capacidad de toneladas, siendo la sobre-escritura de "generarReporteSericio" y "descripcion" muy parecida a la de "Moto".
+
+Ahora se tienen las funciones que podrá usar el código, primero se tiene "leerLinea" la cual recibe un 'String' el cual muestra en consola, para en la misma linea leer lo que ingrese el usuario y almacenarlo en una variable linea de tipo final para terminar devolviendo lo que se guardo en linea o nada si es que el usuario no ingreso ningún dato.
+
+"leerEntero" también espera recibir un 'String' para dentro de un ciclo while el cual no se puede romper, imprimirlo en consola, leer lo que escriba el usuario y guardarlo en una variable linea, la cual en caso de ser nula se pasara a la siguiente iteración del ciclo, en caso contrario se creara la variable valor y se igualara a lo que almacena linea pero casteado a 'int', en caso de que la variable valor sea no sea nula se devolvera lo que contiene, ropiendo el ciclo, y en cualquier otro caso se imprimirá que el valor ingresado es inválido; lo que realiza este método se replica en "leerDouble" pero cambiando el casteo de linea a tipo 'int' por un casteo a tipo 'double'.
+
+"leerBoolSN" realiza algo parecido a los últimos dos métodos, pero en vez de crear una variable valor, crea una variable 'l' y la iguala a lo que contenga linea pero sin espacios y en minúsculas, para posteriormente evaluar si contiene una s o una n para devolver true o false respectivamente, o en todo caso imprimir que se ingrese una s o una n.
+
+Luego están las funciones "crearAutoInteractivo", "crearMotoInteractiva" y "crearCamionInteractivo", las cuales crean un objeto de tipo "Auto", "Moto" y "Camion", respectivamente, haciendo uso de las funciones leer para almacenar los valores que necesita cada objeto y terminar devolviendo el objeto creado con los valores dados.
+
+Luego se tienen las funciones "mostrarListadoBasico" y "mostrarReportesDetallados", ambas esperan recibir una lista de objetos de tipo "Vehiculo" y evaluan si esta vacía para imprimir que aun no se tienen registros y no hacer nada mas, pero en caso de tener registros, ambas funciones recorrerán la lista dada, y en el caso de la primera función, imprimirá lo que devuelva el método "descripcion" y "calcularServicio" de cada objeto de la lista, mientras que en el caso de la segunda imprimirá lo que devuelva el método "generarReporteServicio".
+
+Y por último, la función "main" crea una lista de objetos de tipo "Vehiculo" llamada flotilla, y mediante un ciclo while se imprimirá un menú de opciones, el cual hace uso de "leerEntero" para almacenar la opción del usuario En las opciones 4, 5 y 0, solo se llaman a su función respectiva o se termina el ciclo; sin embargo, las opciones 1, 2 y 3, que se encargan de registrar un nuevo tipo de vehículo, tienen una evaluación de excepciones.
+
+Las tres opciones, dentro de un 'try', crean un tipo de clase "Vehiculo" igualado a lo que devuelva la función crear interactivo correspondiente, para luego añadirlo a la lista e indicar que el vehículo se agregó. Luego, dentro de un 'catch' atrapara lo que se haya lanzado en el primer 'throw' ejecutado y se nombrara como 'e', para luego imprimir que ocurrió un error junto al mensaje personalizado que tenga 'e'; por lo que de esta manera si se ingreso algún dato incorrecto al momento de registrar el vehículo, se imprimirá hasta que se hayan ingresado todos los datos, indicando donde ocurrió el error al momento de registrar, pero mostrando unicamente el primer error encontrado.
   
 
 \section{Diagramas UML}
@@ -69,6 +92,7 @@ El código proporcionado trae en un solo archivo distintas clases y funciones in
     \includegraphics[width=\linewidth]{Imagenes/Clase UML.png}
     \caption*{Diagrama UML de Clases}
 \end{figure}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{Imagenes/Diagrama de secuencia.png}
@@ -109,8 +133,7 @@ El código proporcionado trae en un solo archivo distintas clases y funciones in
 
 
 \section{Conclusiones}
-
- 
+En ésta práctica logramos adquirir una correcta comprensión y gestión de excepciones y errores en Dart, entendiendo cómo éstas herramientas contribuyen a mantener un flujo de ejecución estable y controlado incluso ante situaciones inesperadas. A través del uso de bloques \textbf{try} - \textbf{catch} y la creación de excepciones personalizadas, se observó cómo es posible anticipar fallos y manejar condiciones especiales. Además, se puede destacar que un buen manejo de errores mejora la legibilidad y la estabilidad del código o aplicación, haciéndolas más profesionales. Por lo que en esta práctica se subrayó la relevancia de diseñar clases y métodos que consideren explícitamente los posibles escenarios de error para lograr sistemas más organizados, seguros y eficientes.
 \printbibliography
 
 \end{document}
