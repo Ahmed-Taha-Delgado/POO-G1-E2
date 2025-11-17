@@ -12,7 +12,11 @@ abstract class Vehiculo implements ServicioTaller {
   String _modelo;
   int _anio;
 
-  Vehiculo(this._marca, this._modelo, this._anio);
+  Vehiculo(this._marca, this._modelo, this._anio){
+    this.marca = marca;
+    this.modelo = modelo;
+    this.anio = anio;
+  }
 
   // Getters
   String get marca => _marca;
@@ -86,7 +90,10 @@ class Moto extends Vehiculo {
   int _cilindrada; //CC
 
   Moto(String marca, String modelo, int anio, this._cilindrada)
-      :super(marca, modelo, anio);
+      :super(marca, modelo, anio){
+        this.cilindrada = cilindrada;
+      }      
+      
 
   int get cilindrada => _cilindrada;
 
@@ -123,7 +130,9 @@ class Camion extends Vehiculo {
   double _capacidadToneladas;
 
   Camion(String marca, String modelo, int anio, this._capacidadToneladas)
-      : super(marca, modelo, anio);
+      : super(marca, modelo, anio){
+        this.capacidadToneladas = capacidadToneladas;
+      }
 
   double get capacidadToneladas => _capacidadToneladas;
 
@@ -206,7 +215,7 @@ Vehiculo crearAutoInteractivo() {
   String modelo = leerLinea("Modelo: ");
   int anio = leerEntero("Año: ");
   bool ac = leerBoolSN("¿Tiene aire acondicionado? (s/n): ");
-  return Auto(marca, modelo, anio, ac);
+  return Auto(marca, modelo, anio, ac); 
 }
 
 Vehiculo crearMotoInteractiva() {
