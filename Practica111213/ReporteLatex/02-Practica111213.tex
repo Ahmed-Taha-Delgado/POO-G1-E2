@@ -12,7 +12,7 @@
 \usepackage{subcaption}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\lhead{Reporte de la Práctica 9 y 10}
+\lhead{Reporte de la Práctica 11, 12 y 13}
 \rhead{Programación Orientada a Objetos}
 
 \begin{document}
@@ -33,24 +33,64 @@
 
 \section{Marco Teórico}
 \begin{itemize}
-    
+    \item \textbf{Archivos: } Los archivos, en términos computacionales, son conjuntos de datos con un nombre y extensión que permite almacenar información de manera permanente en memoria secundaria, para que pueda ser consultada, utilizada y modificada posteriormente tanto por el usuario como diferentes programas.
 
+    Los programas se comunican con los archivos mediante \textit{flujos de datos}. Estos flujos se clasifican en \textbf{flujos de entrada} y \textbf{flujos de salida}. 
+    \begin{itemize}
+        \item \textbf{Flujos de entrada:} cuando los programas reciben información desde archivos o una fuente externa.
+        \item \textbf{Flujos de salida:} cuando los programas envían esa información a un destino externo, como lo puede ser el usuario.
+    \end{itemize} ~\cite{Archivos} ~\cite{Flujos}
+
+    \item \textbf{Hilos: } Un hilo es la unidad mínima de ejecución dentro de un proceso, dichos hilos contienen una sucesión de instrucciones que se ejecutan de manera independiente pero no es totalmente autónomo del proceso.
+    En el caso de Dart, los hilos no se comunican entre sí directamente ya que no comparten memoria, éstos se comunican mediante \textbf{SendPort}  y \textbf{ReceivePort}, los cuáles enviarán y recibirán mensajes rescpectivamente.~\cite{Hilos}
+    
+    
 \end{itemize}
+
+\clearpage
 
 \section{Desarrollo}
 
+\subsection{Explicación del código de archivos:}
+
+El código implementado en dart \textbf{main.dart} consta de un menú de opciones que nos permite entender y trabajar con las operaciones básicas de los archivos. El menú cuenta con 3 opciones que explicaremos a continuación y la opción salir. Cada opción manda a llamar a una función que permite realizar la operación ingresada. \\
+
+\textbf{Opción 1. Crear archivo .txt y escribir texto:} Esta función le pide al usuario que ingrese un nombre para crear un archivo, si la cadena ingresada no esta vacía, crea ese nuevo archivo. Al crear el archivo, se le pide al usuario que ingrese el texto que contendrá el archivo, y para indicar que ya termino de escribir lo que se quiere guardar en el archivo, que escriba 'FIN'. El programa, mediante un ciclo \textit{while}, va almacenando las cadenas ingresadas por el usuario en una lista, y si se detecta una cadena 'FIN', se termina el ciclo. Finalmente con un \textit{try-catch}, se intentará crear un archivo con el nombre ingresado inicialmente por el usuario (creando un objeto de tipo \textbf{FILE} e indicando su nombre en el constructor), y con el método \textbf{writeAsStringSync} se escriben las cadenas guardadas en la lista de cadenas, dentro del archivo creado. En caso de no poder crear o escribir en el archivo, el bloque \textit{catch} muestra que ocurrio un error al guardar el archivo. \\
+
+\textbf{Opción 2. Leer archivo existente:} Esta función le pide al usuario que ingrese el nombre o ruta del archivo que desea leer, si el nombre o ruta ingresado no se encuentra se termina esta funcion. Si la ejecución continua, con un \textit{try-catch} se intentará abrir un archivo con el nombre o ruta (indicándolo en el constructor), y leerlo con el método \textbf{readAsStringSync}, para posteriormente imprimirlo. \\
+
+\textbf{Opción 3. Sobrescribir archivo existente:} Esta función le pide al usuario que ingrese el nombre o ruta del archivo a sobrescribir, si el nombre o ruta no se encuentra, se termina la funcion. Si el archivo se encuentra, se abre el archivo y se le pide confirmacion al usuario para sobrescribir el archivo, indicandole que esta accion borrara todo su contenido. En caso de aceptar la sobrescritura, de la misma manera que la primera opcion, se le pide al usuario que ingrese el texto y para terminar escriba 'FIN', y con un ciclo while se almacenan las cadenas en una lista, para que finalmente con un \textit{try-catch}, se intente sobrescribir el archivo con el método \textbf{writeAsStringSync}, agregando las cadenas guardadas en la lista al archivo.
+
+\subsection{Explicación de los códigos de Hilos: }
+
+En el \textbf{Ejemplo1.dart} se comienza creando el método asíncrono main, dentro del mismo se manda a imprimir 'Inicio', después se crea una tarea asíncrona la cuál tendrá un retraso de 2 segundos pero no se interrumpirá el flujo del programa sino que este sigue hasta su final imprimiendo 'Fin inmediato (sin esperar)', lo cuál nos indica que el programa no ha esperado a que la tarea retrasada termine para que el programa concluya, dos segundos después de la ejecución finalizará la tarea con retraso y se imprime 'Tarea asíncrona completada'.
+
+En \textbf{Ejemplo2.dart} tenemos la misma base que en el ejemplo anterior, pero en esta ocasión a la tarea asíncrona se le añade la palabra \textbf{await} al inicio de la línea. Con esto se conseguido que al ejecutar el programa, se inicie \textbf{main} pero no seguirá hasta el final, sino que el flujo se ve interrumpido hasta que la tarea asíncrona termine (2 segundos) para posteriormente terminar la ejecución.
+
+En \textbf{Ejemplo3.dart} Comienza importando la librería \textbf{dart:isolate} que permite crear y manejar isolates. Luego se define el método tarea que enviará el mensaje con \textbf{SendPort}, posteriormente en main, se crea un \textbf{ReceivePort} que recibira el mensaje del isolate tarea ya definido. Después se crea un isolate principal con \textbf{isolate.spawn}, al cuál se le pasará el \textbf{SendPort} asociado al \textbf{ReceivePort} para finalmente hacer que nuestro isolate principal escuche los mensajes con \textbf{ReceivePort.listen} y después los mande a imprimir.
+
+En \textbf{Ejemplo4.dart} nuevamente se utiliza la librería \textbf{dart:isolate}, después se define la función \textbf{sumaGrande}, en esta se hace la suma de los números desde 0 hasta 500 millones y se envía el resultado al isolate principal en main. Por su lado, en main se crean el ReceivePort y el isolate principal al cuál se le pasa el total de la suma con \textbf{ReceivePort.listen} y se manda a imprimir, finalmente añaden algunas impresiones para indicar al usuario que está pasando al ejecutar. 
+
+En \textbf{Ejemplo5.dart} se implementa una comunicación bidireccional más compleja entre hilos. PRimero se define la función \textbf{worker}, la cual crea su propio \textbf{ReceivePort} interno y envía su dirección (\textbf{SendPort}) al hilo principal, permitiendo así que el main sepa a dónde enviarle mensajes. En \textbf{main}, al escuchar a través de su \textbf{ReceivePort}, se distingue si el mensaje recibido es un puerto (para establecer la conexión) o una cadena de texto (una respuesta). Una vez que \textbf{main} obtiene el puerto worker, le envía un mensaje; el worker lo procesa, devuelve una respuesta y finalmente el programa principal cierra los puertos y termina el isolate con \textbf{isolate.kill}.
+
+En \textbf{Ejemplo6.dart} se realiza la misma operación matemática que en el ejemplo 4, pero esta vez de forma síncrona y sin utilizar la librería \textbf{dart:isolate}. El programa inicia imprimiendo 'Inicio' y procede a ejecutar el ciclo \textbf{for} de 500 millones de iteraciones directamente en el hilo principal. Esto provoca que el flujo de ejecución se bloquee totalmente esperando a que termine el cálculo; solo cuando la suma ha finalizado se imprime el 'Resultado' y posteriormente 'Fin', demostrando cómo una tarea pesada puede congelar la ejecución si no se delega a un hilo paralelo.
+
+
+\clearpage
 
 \section{Diagramas UML}
 
+\subsection{Diagramas del código de archivos:}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{Imagenes/Clase UML.png}
+    \includegraphics[width=0.8\linewidth]{Imagenes/Clase UML Archivos.png}
     \caption*{Diagrama UML de Clases}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{Imagenes/Diagrama de secuencia.png}
+    \includegraphics[width=0.8\linewidth]{Imagenes/Diagrama de secuencia archivos.png}
     \caption*{Diagrama UML de Secuencia}
 \end{figure}
 
@@ -58,41 +98,10 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{Imagenes/auto.png}
-    \caption*{registro de un automóvil}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\linewidth]{Imagenes/moto.png}
-    \caption*{registro de una motocicleta}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\linewidth]{Imagenes/camion.png}
-    \caption*{Registro de un camión}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\linewidth]{Imagenes/resumen.png}
-    \caption*{Vista de todos los vehículos registrados}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\linewidth]{Imagenes/reportes.png}
-    \caption*{Reportes detallados para cada vehículo}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.49\linewidth]{Imagenes/excepcion1.png}
-    \includegraphics[width=0.49\linewidth]{Imagenes/excepcion2.png}
-    \includegraphics[width=0.49\linewidth]{Imagenes/excepcion3.png}
-    \includegraphics[width=0.49\linewidth]{Imagenes/excepcion4.png}
-    \caption*{Muestras de algunos errores posibles}
+    \includegraphics[width=0.49\linewidth]{Imagenes/Crear archivo.png}
+    \includegraphics[width=0.49\linewidth]{Imagenes/Sobrescribir archivo.png}
+    \includegraphics[width=0.49\linewidth]{Imagenes/Leer archivo.png}
+    \caption*{Ejecución del código de archivos}
 \end{figure}
 
 \section{Conclusiones}
