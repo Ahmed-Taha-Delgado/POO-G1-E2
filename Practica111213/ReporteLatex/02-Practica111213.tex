@@ -23,11 +23,11 @@
 \section{Introducción}
 
 \begin{itemize}
-\item \textbf{Planteamiento del Problema:} .
+\item \textbf{Planteamiento del Problema:} Se busca la implementación, comprensión y explicación de los temas de Archivos, Hilos y Patrones en Dart, mediante el análisis de múltiples códigos para cada tema.
 
-\item \textbf{Motivación:} .
+\item \textbf{Motivación:} En esta práctica aprenderemos sobre la correcta aplicación de los temas anteriormente mencionados en programas de Dart para la resolución de problemas con mayor eficiencia.
 
-\item \textbf{Objetivos:} .
+\item \textbf{Objetivos:} Crear programas en Dart que aprovechen de forma sencilla y práctica el uso de archivos, hilos y patrones de diseño, para que la aplicación funcione de manera fluida, organizada y pueda reaccionar bien incluso cuando ocurran tareas simultáneas o situaciones inesperadas.
 
 \end{itemize}
 
@@ -40,13 +40,23 @@
         \item \textbf{Flujos de entrada:} cuando los programas reciben información desde archivos o una fuente externa.
         \item \textbf{Flujos de salida:} cuando los programas envían esa información a un destino externo, como lo puede ser el usuario.
     \end{itemize} ~\cite{Archivos} ~\cite{Flujos}
-
+    
     \item \textbf{Hilos: } Un hilo es la unidad mínima de ejecución dentro de un proceso, dichos hilos contienen una sucesión de instrucciones que se ejecutan de manera independiente pero no es totalmente autónomo del proceso.
     En el caso de Dart, los hilos no se comunican entre sí directamente ya que no comparten memoria, éstos se comunican mediante \textbf{SendPort}  y \textbf{ReceivePort}, los cuáles enviarán y recibirán mensajes rescpectivamente.~\cite{Hilos}
+    
+    \item \textbf{Patrones: }Los patrones de diseño son soluciones aprobadas y documentadas para problemas comunes en el desarrollo de software. Son guíaa o modelos que muestran cómo estructurar clases, objetos y responsabilidades dentro de un programa para que sea más fácil de mantener, extender y comprender. Su principal proposito es mejorar la calidad del software.
+    Se considerar tres tipos de patrones de software:
+    \begin{itemize}    
+        \item \textbf{Patrones arquitectónicos:} Describen soluciones al mas alto nivel de software y darware. Normalmente soportan requerimientos no funcionales.
+        \item \textbf{Patrones de diseño:} Describen soluciones en un nivel medio de estructuras de software. Normalmente soportan requerimientos funcionales
+        \item \textbf{Patrones de programación:} Describen soluciones en un nivel medio de estructuras de software. Normalmente soportan requerimientos funcionales.
+    \end{itemize}
+    ~\cite{Patrones}
+
+    \item \textbf{Patrón Modelo-Vista-Controlador: }También llamado MVC, es un patrón de arquitectura de software en el cual se utilizan tres componentes, separando la lógica de la aplicación de la lógica de la vista, algo muy útil ya que permite realizar cambios en parte de la aplicación sin afectar a las demás, encargándose el modelo de cuestiones como manejo de datos, generalmente, aunque no obligatoriamente, consultando bases de datos para actualizaciones, consultas, búsquedas, etc.
+    \\EL controlador es quien se encarga de procesar las solicitudes del usuario, pedirle los datos correspondientes al modelo y de comunicárselos a vista; vista se encarga de la representación visual de los datos, encargándose de toda la interfaz gráfica, no preocupándose el modelo ni el controlador por lo que sucede en esta parte.~\cite{PatronMVC}
 
 \end{itemize}
-
-\clearpage
 
 \section{Desarrollo}
 
@@ -60,20 +70,29 @@ El código implementado en dart \textbf{main.dart} consta de un menú de opcione
 
 \textbf{Opción 3. Sobrescribir archivo existente:} Esta función le pide al usuario que ingrese el nombre o ruta del archivo a sobrescribir, si el nombre o ruta no se encuentra, se termina la funcion. Si el archivo se encuentra, se abre el archivo y se le pide confirmacion al usuario para sobrescribir el archivo, indicandole que esta accion borrara todo su contenido. En caso de aceptar la sobrescritura, de la misma manera que la primera opcion, se le pide al usuario que ingrese el texto y para terminar escriba 'FIN', y con un ciclo while se almacenan las cadenas en una lista, para que finalmente con un \textit{try-catch}, se intente sobrescribir el archivo con el método \textbf{writeAsStringSync}, agregando las cadenas guardadas en la lista al archivo.
 
+
 \subsection{Explicación de los códigos de Hilos: }
+En el \textbf{Ejemplo1.dart} se comienza creando el método asíncrono main, dentro del mismo se manda a imprimir 'Inicio', después se crea una tarea asíncrona la cuál tendrá un retraso de 2 segundos pero no se interrumpirá el flujo del programa sino que este sigue hasta su final imprimiendo 'Fin inmediato (sin esperar)', lo cuál nos indica que el programa no ha esperado a que la tarea retrasada termine para que el programa concluya, dos segundos después de la ejecución finalizará la tarea con retraso y se imprime 'Tarea asíncrona completada'. \\
 
-En el \textbf{Ejemplo1.dart} se comienza creando el método asíncrono main, dentro del mismo se manda a imprimir 'Inicio', después se crea una tarea asíncrona la cuál tendrá un retraso de 2 segundos pero no se interrumpirá el flujo del programa sino que este sigue hasta su final imprimiendo 'Fin inmediato (sin esperar)', lo cuál nos indica que el programa no ha esperado a que la tarea retrasada termine para que el programa concluya, dos segundos después de la ejecución finalizará la tarea con retraso y se imprime 'Tarea asíncrona completada'.
+En \textbf{Ejemplo2.dart} tenemos la misma base que en el ejemplo anterior, pero en esta ocasión a la tarea asíncrona se le añade la palabra \textbf{await} al inicio de la línea. Con esto es conseguido que al ejecutar el programa, se inicie \textbf{main} pero no seguirá hasta el final, sino que el flujo se ve interrumpido hasta que la tarea asíncrona termine (2 segundos) para posteriormente terminar la ejecución. \\
 
-En \textbf{Ejemplo2.dart} tenemos la misma base que en el ejemplo anterior, pero en esta ocasión a la tarea asíncrona se le añade la palabra \textbf{await} al inicio de la línea. Con esto se conseguido que al ejecutar el programa, se inicie \textbf{main} pero no seguirá hasta el final, sino que el flujo se ve interrumpido hasta que la tarea asíncrona termine (2 segundos) para posteriormente terminar la ejecución.
+En \textbf{Ejemplo3.dart} Comienza importando la librería \textbf{dart:isolate} que permite crear y manejar isolates. Luego se define el método tarea que enviará el mensaje con \textbf{SendPort}, posteriormente en main, se crea un \textbf{ReceivePort} que recibirá el mensaje del isolate tarea ya definido. Después se crea un isolate principal con \textbf{isolate.spawn}, al cuál se le pasará el \textbf{SendPort} asociado al \textbf{ReceivePort} para finalmente hacer que nuestro isolate principal escuche los mensajes con \textbf{ReceivePort.listen} y después los mande a imprimir. \\
 
-En \textbf{Ejemplo3.dart} Comienza importando la librería \textbf{dart:isolate} que permite crear y manejar isolates. Luego se define el método tarea que enviará el mensaje con \textbf{SendPort}, posteriormente en main, se crea un \textbf{ReceivePort} que recibira el mensaje del isolate tarea ya definido. Después se crea un isolate principal con \textbf{isolate.spawn}, al cuál se le pasará el \textbf{SendPort} asociado al \textbf{ReceivePort} para finalmente hacer que nuestro isolate principal escuche los mensajes con \textbf{ReceivePort.listen} y después los mande a imprimir.
+En \textbf{Ejemplo4.dart} nuevamente se utiliza la librería \textbf{dart:isolate}, después se define la función \textbf{sumaGrande}, en esta se hace la suma de los números desde 0 hasta 500 millones y se envía el resultado al isolate principal en main. Por su lado, en main se crean el ReceivePort y el isolate principal al cuál se le pasa el total de la suma con \textbf{ReceivePort.listen} y se manda a imprimir, finalmente añaden algunas impresiones para indicar al usuario que está pasando al ejecutar. \\
 
-En \textbf{Ejemplo4.dart} nuevamente se utiliza la librería \textbf{dart:isolate}, después se define la función \textbf{sumaGrande}, en esta se hace la suma de los números desde 0 hasta 500 millones y se envía el resultado al isolate principal en main. Por su lado, en main se crean el ReceivePort y el isolate principal al cuál se le pasa el total de la suma con \textbf{ReceivePort.listen} y se manda a imprimir, finalmente añaden algunas impresiones para indicar al usuario que está pasando al ejecutar. 
+En \textbf{Ejemplo5.dart} se implementa una comunicación bidireccional más compleja entre hilos. Primero se define la función \textbf{worker}, la cual crea su propio \textbf{ReceivePort} interno y envía su dirección (\textbf{SendPort}) al hilo principal, permitiendo así que el main sepa a dónde enviarle mensajes. En \textbf{main}, al escuchar a través de su \textbf{ReceivePort}, se distingue si el mensaje recibido es un puerto (para establecer la conexión) o una cadena de texto (una respuesta). Una vez que \textbf{main} obtiene el puerto worker, le envía un mensaje; el worker lo procesa, devuelve una respuesta y finalmente el programa principal cierra los puertos y termina el isolate con \textbf{isolate.kill}. \\
 
-En \textbf{Ejemplo5.dart} se implementa una comunicación bidireccional más compleja entre hilos. PRimero se define la función \textbf{worker}, la cual crea su propio \textbf{ReceivePort} interno y envía su dirección (\textbf{SendPort}) al hilo principal, permitiendo así que el main sepa a dónde enviarle mensajes. En \textbf{main}, al escuchar a través de su \textbf{ReceivePort}, se distingue si el mensaje recibido es un puerto (para establecer la conexión) o una cadena de texto (una respuesta). Una vez que \textbf{main} obtiene el puerto worker, le envía un mensaje; el worker lo procesa, devuelve una respuesta y finalmente el programa principal cierra los puertos y termina el isolate con \textbf{isolate.kill}.
+En \textbf{Ejemplo6.dart} se realiza la misma operación matemática que en el ejemplo 4, pero esta vez de forma síncrona y sin utilizar la librería \textbf{dart:isolate}. El programa inicia imprimiendo 'Inicio' y procede a ejecutar el ciclo \textbf{for} de 500 millones de iteraciones directamente en el hilo principal. Esto provoca que el flujo de ejecución se bloquee totalmente esperando a que termine el cálculo; solo cuando la suma ha finalizado se imprime el 'Resultado' y posteriormente 'Fin', demostrando cómo una tarea pesada puede congelar la ejecución si no se delega a un hilo paralelo. \\
 
-En \textbf{Ejemplo6.dart} se realiza la misma operación matemática que en el ejemplo 4, pero esta vez de forma síncrona y sin utilizar la librería \textbf{dart:isolate}. El programa inicia imprimiendo 'Inicio' y procede a ejecutar el ciclo \textbf{for} de 500 millones de iteraciones directamente en el hilo principal. Esto provoca que el flujo de ejecución se bloquee totalmente esperando a que termine el cálculo; solo cuando la suma ha finalizado se imprime el 'Resultado' y posteriormente 'Fin', demostrando cómo una tarea pesada puede congelar la ejecución si no se delega a un hilo paralelo.
+\subsection{Explicación del código de patrones: }
+Considerando \textbf{main.dart} como el código principal proporcionado, este código implementa un patrón Modelo-Vista-Controlador(MVC), las clases que funcionan como Modelo son los pokemón y sus ataques, teniendo primero una clase \textit{pokemon} en la cual solo se establecen atributos como el nombre, algunas estadísticas y el tipo, teniendo unicamente un constructor el cual establece la vida, nivel y tipo a los dados, mientras que para la vida y velocidad utiliza un número aleatorio; luego se crean dos clases que heredan, para los pokemón tipo fuego y hierba que utilizan el constructor de la clase padre cambiando unicamente el tipo.
+\\Luego se tiene la clase \textit{ataque}, la cual cuenta con el nombre del ataque, la potencia y el tipo, contando con un constructor que solo relaciona los valores dados con su respectivo atributo, y al igual que con la clase \textit{pokemon}, se tienen tres clases que heredan para movimientos tipo fuego, normal y hierba, las cuales usan el constructor del padre cambiando unicamente el tipo de ataque. \\
 
+Para la parte de Vista, se tiene primero una clase abstracta que se utilizara de interfaz, en donde se establece que se tendrán los métodos \textit{mostrarInformcacionPokemon, mostrarAtaque, mostrarSuperEfectivo, mostrarPocoEfectivo, mostrarDanio, mostrarDesmayo, mostrarSiguienteTurno, mostrarGanador}, ya dentro de la clase \textit{ConsoleCombateView} se implementa la interfaz, y se escribe lo que mostrara cada método en consola, accediendo a los datos de los pokemón creados y en combate, de ser necesario. \\
+
+Para la parte del controlador, se tiene una clase \textit{CombatController}, la cual se encarga de manejar la lógica de los ataques, de los turnos, y de lo que se mostrara en pantalla, usando sobretodo un objeto de la clase padre de vista \textit{CombateView}, siendo realmente impresiones sencillas de puro texto las que realiza por si sola la clase, y estableciendo el objeto según el tipo de objeto hijo de \textit{CombateView} que se pase al crear el objeto \textit{CombateController}, aunque manejando eventos como los ataques a usar sin intervención del usuario, por el momento. \\
+
+Por ultimo en un método \textit{main}, ya fuera de cualquier clase, se representa lo que podría ser una interacción con el usuario, creando un objeto \textit{ConsoleCombateView} para dárselo a un objeto de clase \textit{CombateController}, se crean dos pokemón diferentes, un ataque y se inicializa un combate con  el método \textit{iniciarCombate} del controlador creado, dándole como datos los pokemón creados y el ataque.
 
 \clearpage
 
@@ -93,18 +112,91 @@ En \textbf{Ejemplo6.dart} se realiza la misma operación matemática que en el e
     \caption*{Diagrama UML de Secuencia}
 \end{figure}
 
+\subsection{Diagramas de los códigos de Hilos: }
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Imagenes/EstaticoEjemplo3.png}
+    \caption*{Diagrama UML estático del Ejemplo 3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Imagenes/DinamicoEjemplo4.png}
+    \caption*{Diagrama UML dinámico del Ejemplo 3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Imagenes/EstaticoEjemplo4.png}
+    \caption*{Diagrama UML estático del Ejemplo 4}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Imagenes/DinamicoEjemplo4.png}
+    \caption*{Diagrama UML dinámico del Ejemplo 4}
+\end{figure}
+
+
+
 \section{Resultados}
+
+\subsection{Resultados del código de archivos}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.49\linewidth]{Imagenes/Crear archivo.png}
-    \includegraphics[width=0.49\linewidth]{Imagenes/Sobrescribir archivo.png}
+    \includegraphics[width=0.46\linewidth]{Imagenes/Sobrescribir archivo.png}
     \includegraphics[width=0.49\linewidth]{Imagenes/Leer archivo.png}
     \caption*{Ejecución del código de archivos}
 \end{figure}
 
-\section{Conclusiones}
+\subsection{Resultados del código de hilos}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Imagenes/ejemplo1.png}
+    \caption{Ëjemplo 1}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Imagenes/ejemplo2.png}
+    \caption*{Ejemplo 2}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Imagenes/ejemplo3.png}
+    \caption*{Ejemplo 3}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Imagenes/ejemplo4.png}
+    \caption*{Ejemplo 4}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Imagenes/ejemplo5.png}
+    \caption*{Ejemplo 5}
+\end{figure}   
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Imagenes/ejemplo6.png}
+    \caption*{Ejemplo 6}
+\end{figure}
+
+\subsection{Resultados del código de patrón}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Practica111213/ReporteLatex/Imagenes/patronMVC.png}
+    \caption*{Ejecución del patrón MVC}
+\end{figure}
+    
+
+
+\section{Conclusiones}
+En esta práctica logramos comprender cómo trabajar de manera correcta con archivos, para almacenar informacion que puede ser modificada y consultada posteriormente; asi como hilos de ejecución, que permiten el trabajo y patrones de diseño en Dart, identificando la forma en como cada uno de estos elementos son esenciales para así construir aplicaciones más eficientes, organizadas y preparadas para situaciones complejas.
 
 \printbibliography
 
