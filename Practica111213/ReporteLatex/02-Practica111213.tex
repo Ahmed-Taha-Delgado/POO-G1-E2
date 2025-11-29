@@ -39,9 +39,9 @@ Los programas se comunican con los archivos mediante \textit{flujos de datos}. E
 \end{itemize} ~\cite{Archivos} ~\cite{Flujos}
 
 \subsection{Hilos: } Un hilo es la unidad mínima de ejecución dentro de un proceso, dichos hilos contienen una sucesión de instrucciones que se ejecutan de manera independiente pero no es totalmente autónomo del proceso.
-En el caso de Dart, los hilos no se comunican entre sí directamente ya que no comparten memoria, éstos se comunican mediante \textbf{SendPort}  y \textbf{ReceivePort}, los cuáles enviarán y recibirán mensajes rescpectivamente.~\cite{Hilos}
+En el caso de Dart, los hilos no se comunican entre sí directamente ya que no comparten memoria, éstos se comunican mediante \textbf{SendPort}  y \textbf{ReceivePort}, los cuáles enviarán y recibirán mensajes respectivamente.~\cite{Hilos}
 
-\subsection{Patrones: }Los patrones de diseño son soluciones aprobadas y documentadas para problemas comunes en el desarrollo de software. Son guíaa o modelos que muestran cómo estructurar clases, objetos y responsabilidades dentro de un programa para que sea más fácil de mantener, extender y comprender. Su principal propósito es mejorar la calidad del software.
+\subsection{Patrones: }Los patrones de diseño son soluciones aprobadas y documentadas para problemas comunes en el desarrollo de software. Son guías o modelos que muestran cómo estructurar clases, objetos y responsabilidades dentro de un programa para que sea más fácil de mantener, extender y comprender. Su principal propósito es mejorar la calidad del software.
 Se considerar tres tipos de patrones de software:
 \begin{itemize}    
     \item \textbf{Patrones arquitectónicos:} Describen soluciones al mas alto nivel de software y hardware. Normalmente soportan requerimientos no funcionales.
@@ -64,7 +64,7 @@ El código implementado en dart \textbf{main.dart} consta de un menú de opcione
 
 \textbf{Opción 2. Leer archivo existente:} Esta función le pide al usuario que ingrese el nombre o ruta del archivo que desea leer, si el nombre o ruta ingresado no se encuentra se termina esta funcion. Si la ejecución continua, con un \textit{try-catch} se intentará abrir un archivo con el nombre o ruta (indicándolo en el constructor), y leerlo con el método \textbf{readAsStringSync}, para posteriormente imprimirlo. \\
 
-\textbf{Opción 3. Sobrescribir archivo existente:} Esta función le pide al usuario que ingrese el nombre o ruta del archivo a sobrescribir, si el nombre o ruta no se encuentra, se termina la funcion. Si el archivo se encuentra, se abre el archivo y se le pide confirmacion al usuario para sobrescribir el archivo, indicandole que esta accion borrara todo su contenido. En caso de aceptar la sobrescritura, de la misma manera que la primera opcion, se le pide al usuario que ingrese el texto y para terminar escriba 'FIN', y con un ciclo while se almacenan las cadenas en una lista, para que finalmente con un \textit{try-catch}, se intente sobrescribir el archivo con el método \textbf{writeAsStringSync}, agregando las cadenas guardadas en la lista al archivo.
+\textbf{Opción 3. Sobrescribir archivo existente:} Esta función le pide al usuario que ingrese el nombre o ruta del archivo a sobrescribir, si el nombre o ruta no se encuentra, se termina la función. Si el archivo se encuentra, se abre el archivo y se le pide confirmación al usuario para sobrescribir el archivo, indicándole que esta acción borrara todo su contenido. En caso de aceptar la sobrescritura, de la misma manera que la primera opción, se le pide al usuario que ingrese el texto y para terminar escriba 'FIN', y con un ciclo while se almacenan las cadenas en una lista, para que finalmente con un \textit{try-catch}, se intente sobrescribir el archivo con el método \textbf{writeAsStringSync}, agregando las cadenas guardadas en la lista al archivo.
 
 
 \subsection{Explicación de los códigos de Hilos: }
@@ -118,6 +118,8 @@ En el main, se crean 2 impresoras con ayuda del patrón de diseño, y se agregan
 
 \subsection{Diagramas de los códigos de Hilos: }
 
+\textbf{Algunos UML de los ejemplos:}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{Imagenes/EstaticoEjemplo3.png}
@@ -129,6 +131,8 @@ En el main, se crean 2 impresoras con ayuda del patrón de diseño, y se agregan
     \includegraphics[width=\linewidth]{Imagenes/DinamicoEjemplo4.png}
     \caption*{Diagrama UML dinámico del Ejemplo 3}
 \end{figure}
+
+\clearpage
 
 \begin{figure}[H]
     \centering
@@ -144,7 +148,7 @@ En el main, se crean 2 impresoras con ayuda del patrón de diseño, y se agregan
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{Imagenes/EstaticoEjemplo6.png}
+    \includegraphics[width=0.7\linewidth]{Imagenes/EstaticoEjemplo6.png}
     \caption*{Diagrama UML estático del Ejemplo 6}
 \end{figure}
 
@@ -154,7 +158,31 @@ En el main, se crean 2 impresoras con ayuda del patrón de diseño, y se agregan
     \caption*{Diagrama UML dinámico del Ejemplo 6}
 \end{figure}
 
-\subsection{Diagramas de código de patrón MVC}
+\subsection{Diagramas de código de patrones de diseño}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Imagenes/EstaticoMVC.png}
+    \caption*{Diagrama UML estático del código de patrón MVC}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Imagenes/Dinamico MVC.jpeg}
+    \caption*{Diagrama UML dinámico del código de patrón MVC}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Imagenes/singleUMLClases.png}
+    \caption*{Diagrama UML estático del código Singleton}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Imagenes/singelton secuencia.png}
+    \caption*{Diagrama UML dinámico del código Singleton}
+\end{figure}
 
 \clearpage
 
@@ -215,7 +243,6 @@ En el main, se crean 2 impresoras con ayuda del patrón de diseño, y se agregan
     \centering
     \includegraphics[width=0.7\linewidth]{Practica111213/ReporteLatex/Imagenes/singleton.png}
     \caption*{Ejecución del patrón de Singleton}
-    \label{fig:placeholder}
 \end{figure}
     
 \clearpage
