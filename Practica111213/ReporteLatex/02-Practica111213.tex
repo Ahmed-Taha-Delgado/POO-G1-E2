@@ -40,14 +40,10 @@
         \item \textbf{Flujos de entrada:} cuando los programas reciben información desde archivos o una fuente externa.
         \item \textbf{Flujos de salida:} cuando los programas envían esa información a un destino externo, como lo puede ser el usuario.
     \end{itemize} ~\cite{Archivos} ~\cite{Flujos}
-<<<<<<< HEAD
 
     \item \textbf{Hilos: } Un hilo es la unidad mínima de ejecución dentro de un proceso, dichos hilos contienen una sucesión de instrucciones que se ejecutan de manera independiente pero no es totalmente autónomo del proceso.
     En el caso de Dart, los hilos no se comunican entre sí directamente ya que no comparten memoria, éstos se comunican mediante \textbf{SendPort}  y \textbf{ReceivePort}, los cuáles enviarán y recibirán mensajes rescpectivamente.~\cite{Hilos}
-=======
->>>>>>> 0606b86ed37868c5a40b49cb378aa743f3c69df9
-    
-    
+
 \end{itemize}
 
 \clearpage
@@ -64,7 +60,6 @@ El código implementado en dart \textbf{main.dart} consta de un menú de opcione
 
 \textbf{Opción 3. Sobrescribir archivo existente:} Esta función le pide al usuario que ingrese el nombre o ruta del archivo a sobrescribir, si el nombre o ruta no se encuentra, se termina la funcion. Si el archivo se encuentra, se abre el archivo y se le pide confirmacion al usuario para sobrescribir el archivo, indicandole que esta accion borrara todo su contenido. En caso de aceptar la sobrescritura, de la misma manera que la primera opcion, se le pide al usuario que ingrese el texto y para terminar escriba 'FIN', y con un ciclo while se almacenan las cadenas en una lista, para que finalmente con un \textit{try-catch}, se intente sobrescribir el archivo con el método \textbf{writeAsStringSync}, agregando las cadenas guardadas en la lista al archivo.
 
-<<<<<<< HEAD
 \subsection{Explicación de los códigos de Hilos: }
 
 En el \textbf{Ejemplo1.dart} se comienza creando el método asíncrono main, dentro del mismo se manda a imprimir 'Inicio', después se crea una tarea asíncrona la cuál tendrá un retraso de 2 segundos pero no se interrumpirá el flujo del programa sino que este sigue hasta su final imprimiendo 'Fin inmediato (sin esperar)', lo cuál nos indica que el programa no ha esperado a que la tarea retrasada termine para que el programa concluya, dos segundos después de la ejecución finalizará la tarea con retraso y se imprime 'Tarea asíncrona completada'.
@@ -79,8 +74,6 @@ En \textbf{Ejemplo5.dart} se implementa una comunicación bidireccional más com
 
 En \textbf{Ejemplo6.dart} se realiza la misma operación matemática que en el ejemplo 4, pero esta vez de forma síncrona y sin utilizar la librería \textbf{dart:isolate}. El programa inicia imprimiendo 'Inicio' y procede a ejecutar el ciclo \textbf{for} de 500 millones de iteraciones directamente en el hilo principal. Esto provoca que el flujo de ejecución se bloquee totalmente esperando a que termine el cálculo; solo cuando la suma ha finalizado se imprime el 'Resultado' y posteriormente 'Fin', demostrando cómo una tarea pesada puede congelar la ejecución si no se delega a un hilo paralelo.
 
-=======
->>>>>>> 0606b86ed37868c5a40b49cb378aa743f3c69df9
 
 \clearpage
 
