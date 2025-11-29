@@ -22,41 +22,37 @@
 
 \section{Introducción}
 
-\begin{itemize}
-\item \textbf{Planteamiento del Problema:} Se busca la implementación, comprensión y explicación de los temas de Archivos, Hilos y Patrones en Dart, mediante el análisis de múltiples códigos para cada tema.
+\subsection{Planteamiento del Problema:} Se busca la implementación, comprensión y explicación de los temas de Archivos, Hilos y Patrones en Dart, mediante el análisis de múltiples códigos para cada tema.
 
-\item \textbf{Motivación:} En esta práctica aprenderemos sobre la correcta aplicación de los temas anteriormente mencionados en programas de Dart para la resolución de problemas con mayor eficiencia.
+\subsection{Motivación:} En esta práctica aprenderemos sobre la correcta aplicación de los temas anteriormente mencionados en programas de Dart para la resolución de problemas con mayor eficiencia.
 
-\item \textbf{Objetivos:} Crear programas en Dart que aprovechen de forma sencilla y práctica el uso de archivos, hilos y patrones de diseño, para que la aplicación funcione de manera fluida, organizada y pueda reaccionar bien incluso cuando ocurran tareas simultáneas o situaciones inesperadas.
-
-\end{itemize}
+\subsection{Objetivos:} Crear programas en Dart que aprovechen de forma sencilla y práctica el uso de archivos, hilos y patrones de diseño, para que la aplicación funcione de manera fluida, organizada y pueda reaccionar bien incluso cuando ocurran tareas simultáneas o situaciones inesperadas.
 
 \section{Marco Teórico}
+
+\subsection{Archivos: } Los archivos, en términos computacionales, son conjuntos de datos con un nombre y extensión que permite almacenar información de manera permanente en memoria secundaria, para que pueda ser consultada, utilizada y modificada posteriormente tanto por el usuario como diferentes programas.
+
+Los programas se comunican con los archivos mediante \textit{flujos de datos}. Estos flujos se clasifican en \textbf{flujos de entrada} y \textbf{flujos de salida}. 
 \begin{itemize}
-    \item \textbf{Archivos: } Los archivos, en términos computacionales, son conjuntos de datos con un nombre y extensión que permite almacenar información de manera permanente en memoria secundaria, para que pueda ser consultada, utilizada y modificada posteriormente tanto por el usuario como diferentes programas.
+    \item \textbf{Flujos de entrada:} cuando los programas reciben información desde archivos o una fuente externa.
+    \item \textbf{Flujos de salida:} cuando los programas envían esa información a un destino externo, como lo puede ser el usuario.
+\end{itemize} ~\cite{Archivos} ~\cite{Flujos}
 
-    Los programas se comunican con los archivos mediante \textit{flujos de datos}. Estos flujos se clasifican en \textbf{flujos de entrada} y \textbf{flujos de salida}. 
-    \begin{itemize}
-        \item \textbf{Flujos de entrada:} cuando los programas reciben información desde archivos o una fuente externa.
-        \item \textbf{Flujos de salida:} cuando los programas envían esa información a un destino externo, como lo puede ser el usuario.
-    \end{itemize} ~\cite{Archivos} ~\cite{Flujos}
-    
-    \item \textbf{Hilos: } Un hilo es la unidad mínima de ejecución dentro de un proceso, dichos hilos contienen una sucesión de instrucciones que se ejecutan de manera independiente pero no es totalmente autónomo del proceso.
-    En el caso de Dart, los hilos no se comunican entre sí directamente ya que no comparten memoria, éstos se comunican mediante \textbf{SendPort}  y \textbf{ReceivePort}, los cuáles enviarán y recibirán mensajes rescpectivamente.~\cite{Hilos}
-    
-    \item \textbf{Patrones: }Los patrones de diseño son soluciones aprobadas y documentadas para problemas comunes en el desarrollo de software. Son guíaa o modelos que muestran cómo estructurar clases, objetos y responsabilidades dentro de un programa para que sea más fácil de mantener, extender y comprender. Su principal proposito es mejorar la calidad del software.
-    Se considerar tres tipos de patrones de software:
-    \begin{itemize}    
-        \item \textbf{Patrones arquitectónicos:} Describen soluciones al mas alto nivel de software y darware. Normalmente soportan requerimientos no funcionales.
-        \item \textbf{Patrones de diseño:} Describen soluciones en un nivel medio de estructuras de software. Normalmente soportan requerimientos funcionales
-        \item \textbf{Patrones de programación:} Describen soluciones en un nivel medio de estructuras de software. Normalmente soportan requerimientos funcionales.
-    \end{itemize}
-    ~\cite{Patrones}
+\subsection{Hilos: } Un hilo es la unidad mínima de ejecución dentro de un proceso, dichos hilos contienen una sucesión de instrucciones que se ejecutan de manera independiente pero no es totalmente autónomo del proceso.
+En el caso de Dart, los hilos no se comunican entre sí directamente ya que no comparten memoria, éstos se comunican mediante \textbf{SendPort}  y \textbf{ReceivePort}, los cuáles enviarán y recibirán mensajes rescpectivamente.~\cite{Hilos}
 
-    \item \textbf{Patrón Modelo-Vista-Controlador: }También llamado MVC, es un patrón de arquitectura de software en el cual se utilizan tres componentes, separando la lógica de la aplicación de la lógica de la vista, algo muy útil ya que permite realizar cambios en parte de la aplicación sin afectar a las demás, encargándose el modelo de cuestiones como manejo de datos, generalmente, aunque no obligatoriamente, consultando bases de datos para actualizaciones, consultas, búsquedas, etc.
-    \\EL controlador es quien se encarga de procesar las solicitudes del usuario, pedirle los datos correspondientes al modelo y de comunicárselos a vista; vista se encarga de la representación visual de los datos, encargándose de toda la interfaz gráfica, no preocupándose el modelo ni el controlador por lo que sucede en esta parte.~\cite{PatronMVC}
-
+\subsection{Patrones: }Los patrones de diseño son soluciones aprobadas y documentadas para problemas comunes en el desarrollo de software. Son guíaa o modelos que muestran cómo estructurar clases, objetos y responsabilidades dentro de un programa para que sea más fácil de mantener, extender y comprender. Su principal propósito es mejorar la calidad del software.
+Se considerar tres tipos de patrones de software:
+\begin{itemize}    
+    \item \textbf{Patrones arquitectónicos:} Describen soluciones al mas alto nivel de software y hardware. Normalmente soportan requerimientos no funcionales.
+    \item \textbf{Patrones de diseño:} Describen soluciones en un nivel medio de estructuras de software. Normalmente soportan requerimientos funcionales
+    \item \textbf{Patrones de programación:} Describen soluciones en un nivel medio de estructuras de software. Normalmente soportan requerimientos funcionales.
 \end{itemize}
+~\cite{Patrones}
+
+\textbf{Patrón Modelo-Vista-Controlador: }También llamado MVC, es un patrón de arquitectura de software en el cual se utilizan tres componentes, separando la lógica de la aplicación de la lógica de la vista, algo muy útil ya que permite realizar cambios en parte de la aplicación sin afectar a las demás, encargándose el modelo de cuestiones como manejo de datos, generalmente, aunque no obligatoriamente, consultando bases de datos para actualizaciones, consultas, búsquedas, etc.
+\\EL controlador es quien se encarga de procesar las solicitudes del usuario, pedirle los datos correspondientes al modelo y de comunicárselos a vista; vista se encarga de la representación visual de los datos, encargándose de toda la interfaz gráfica, no preocupándose el modelo ni el controlador por lo que sucede en esta parte.~\cite{PatronMVC}
+
 
 \section{Desarrollo}
 
@@ -92,8 +88,16 @@ Para la parte de Vista, se tiene primero una clase abstracta que se utilizara de
 
 Para la parte del controlador, se tiene una clase \textit{CombatController}, la cual se encarga de manejar la lógica de los ataques, de los turnos, y de lo que se mostrara en pantalla, usando sobretodo un objeto de la clase padre de vista \textit{CombateView}, siendo realmente impresiones sencillas de puro texto las que realiza por si sola la clase, y estableciendo el objeto según el tipo de objeto hijo de \textit{CombateView} que se pase al crear el objeto \textit{CombateController}, aunque manejando eventos como los ataques a usar sin intervención del usuario, por el momento. \\
 
-Por ultimo en un método \textit{main}, ya fuera de cualquier clase, se representa lo que podría ser una interacción con el usuario, creando un objeto \textit{ConsoleCombateView} para dárselo a un objeto de clase \textit{CombateController}, se crean dos pokemón diferentes, un ataque y se inicializa un combate con  el método \textit{iniciarCombate} del controlador creado, dándole como datos los pokemón creados y el ataque.
+Por ultimo en un método \textit{main}, ya fuera de cualquier clase, se representa lo que podría ser una interacción con el usuario, creando un objeto \textit{ConsoleCombateView} para dárselo a un objeto de clase \textit{CombateController}, se crean dos pokemón diferentes, un ataque y se inicializa un combate con  el método \textit{iniciarCombate} del controlador creado, dándole como datos los pokemón creados y el ataque. \\
 
+También se nos proporciona el código \textbf{singleton.dart}. Este programa nos muestra una plantilla para crear el sistema de impresión de una impresora. Cuenta con la clase \textbf{Documento} que contendra los atributos de un archivo a imprimir: \textit{id, usuario, nombre, contenido}. Esta clase sobrescribe el método \textbf{toString} para darle un formato bonito a la impresión de los atributos. \\
+
+Luego cuenta con la clase \textbf{Impresora} implementando el diseño de singleton, que se caracteriza por tener una instancia estática, un constructor privado, y un factory que devuelve siempre la misma instancia. \\
+
+La clase \textbf{Impresora}, ademas de las características anteriores, cuenta con una cola para representar la cola de impresión, y una lista para el historial de documentos impresos. Así como los métodos \textbf{enviarDocumento}, para agregar un documento a la cola de impresión; \textbf{imprimirSiguiente}, para imprimir el siguiente elemento de la cola de impresión con un formato especifico; \textbf{mostrarCola}, para imprimir los elementos de la cola con un formato especifico; y \textbf{mostrarHistorial}, para mostrar el historial de documentos impresos con un formato especifico. \\
+
+En el main, se crean 2 impresoras con ayuda del patrón de diseño, y se agregan algunos documentos a ambas impresoras, para posteriormente utilizar los métodos anteriores para mostrar la cola de impresión, el historial de documentos impresos, e imprimir los documentos.
+ 
 \clearpage
 
 \section{Diagramas UML}
@@ -138,7 +142,21 @@ Por ultimo en un método \textit{main}, ya fuera de cualquier clase, se represen
     \caption*{Diagrama UML dinámico del Ejemplo 4}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Imagenes/EstaticoEjemplo6.png}
+    \caption*{Diagrama UML estático del Ejemplo 6}
+\end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Imagenes/DinamicoEjemplo6.png}
+    \caption*{Diagrama UML dinámico del Ejemplo 6}
+\end{figure}
+
+\subsection{Diagramas de código de patrón MVC}
+
+\clearpage
 
 \section{Resultados}
 
@@ -192,11 +210,18 @@ Por ultimo en un método \textit{main}, ya fuera de cualquier clase, se represen
     \includegraphics[width=0.7\linewidth]{Practica111213/ReporteLatex/Imagenes/patronMVC.png}
     \caption*{Ejecución del patrón MVC}
 \end{figure}
-    
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Practica111213/ReporteLatex/Imagenes/singleton.png}
+    \caption*{Ejecución del patrón de Singleton}
+    \label{fig:placeholder}
+\end{figure}
+    
+\clearpage
 
 \section{Conclusiones}
-En esta práctica logramos comprender cómo trabajar de manera correcta con archivos, para almacenar informacion que puede ser modificada y consultada posteriormente; asi como hilos de ejecución, que permiten el trabajo y patrones de diseño en Dart, identificando la forma en como cada uno de estos elementos son esenciales para así construir aplicaciones más eficientes, organizadas y preparadas para situaciones complejas.
+En esta práctica logramos comprender cómo trabajar de manera correcta con archivos, para almacenar información que puede ser modificada y consultada posteriormente; así como hilos de ejecución, que permiten la realización de diferentes tareas al mismo tiempo (de manera paralela); y patrones de diseño en Dart, que nos permiten ajustar una plantilla para ser utilizada para un mismo tipo de problema, cambiando sus caracteristicas pero manteniendo una misma estructura. Identificamos la forma en como cada uno de estos elementos son esenciales para así construir aplicaciones más eficientes, organizadas y preparadas para situaciones complejas.
 
 \printbibliography
 
