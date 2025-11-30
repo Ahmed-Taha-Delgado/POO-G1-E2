@@ -13,10 +13,10 @@ final alboroto = AtaqueNormal(nombre: 'Alboroto', potencia: 90, clase:'Especial'
 final araniazo = AtaqueNormal(nombre: 'Arañazo', potencia: 40, clase:'Fisico',prioridad: 0);
 final atizar= AtaqueNormal(nombre: 'Atizar', potencia: 80, clase:'Fisico',prioridad: 0);
 final corte = AtaqueNormal(nombre: 'Corte', potencia: 50, clase:'Fisico',prioridad: 0);
+final ataqueRapido = AtaqueNormal(nombre: 'Ataque rapido', potencia: 40, clase:'Fisico',prioridad: 1);
 
 final rayo = AtaqueElectrico(nombre: 'Rayo', potencia: 90, clase:'Especial',prioridad: 0);
 final ondaTrueno= AtaqueElectrico(nombre: 'Ondatrueno', potencia: 0, clase:'Estado',prioridad: 0);
-final ataqueRapido = AtaqueElectrico(nombre: 'Ataque rapido', potencia: 40, clase:'Fisico',prioridad: 1);
 final impactoTrueno= AtaqueElectrico(nombre: 'Impactrueno', potencia: 80, clase:'Especial',prioridad: 0);//
 
 final hidroBomba = AtaqueAgua(nombre: 'Hidro bomba', potencia: 110, clase:'Especial',prioridad: 0);

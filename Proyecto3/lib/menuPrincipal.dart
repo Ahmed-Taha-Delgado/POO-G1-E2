@@ -4,8 +4,23 @@ import 'package:pokemonpoo/musica.dart';
 import './seleccionarPokemon.dart';
 import 'dart:io';
 
-class MenuPrincipal extends StatelessWidget {
+class MenuPrincipal extends StatefulWidget {
   const MenuPrincipal({super.key});
+
+  @override
+  State<MenuPrincipal> createState() => _MenuPrincipalDinamico();
+
+}
+
+class _MenuPrincipalDinamico extends State<MenuPrincipal>{
+
+  bool musica = true;
+  
+  @override
+  void initState() {
+    super.initState();
+    Musica().activarMusicaMenu();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,24 +42,20 @@ class MenuPrincipal extends StatelessWidget {
                 shrinkWrap: true,
                 padding: const EdgeInsets.all(20),
                 children: [
-                  Text(
-                    "POKEMÓN",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.luckiestGuy(
-                      fontSize: 130,
-                    ),
-                  ),
+                  Image.asset('assets/Imagenes/titulo.png'),
                   _crearBoton(
                     Icons.catching_pokemon_rounded, "Jugar",Colors.red, (){
                       Navigator.push(
                         context, 
-                        MaterialPageRoute(builder: (context) => VentanaSeleccionarPokemon()))
-                        ;
+                        MaterialPageRoute(builder: (context) => VentanaSeleccionarPokemon()));
                     }),
-                  _crearBoton(Icons.music_note, "Música", Colors.black, (){
-                      Musica().activarMusicaMenu();
+                  _crearBoton(musica? Icons.music_note : Icons.music_off, "Música", Colors.black, (){ 
+                      setState(() {
+                        musica? musica = false : musica = true;
+                        Musica().activarMusicaMenu();
+                      });
                     }),
-                  _crearBoton(Icons.exit_to_app_rounded, "Salir", Colors.red, (){
+                  _crearBoton(Icons.exit_to_app_rounded, "Salir", Colors.black, (){
                       exit(0);
                     }),
                 ],
@@ -64,7 +75,7 @@ class MenuPrincipal extends StatelessWidget {
         width: 300, 
         height: 80,
         child: Card(
-          elevation: 4,
+          elevation: 15,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           child: InkWell(
             onTap: onPressed,
@@ -73,7 +84,13 @@ class MenuPrincipal extends StatelessWidget {
               children: [
                 Icon(icon, size: 40, color: color),
                 const SizedBox(width: 15),
-                Text(texto, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                Text(
+                  texto, 
+                  style: GoogleFonts.pressStart2p(
+                    fontSize: 15, 
+                    fontWeight: FontWeight.bold,
+                    )
+                  ),
               ],
             ),
           ),
