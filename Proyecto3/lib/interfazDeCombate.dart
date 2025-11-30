@@ -16,10 +16,10 @@ class InterfazDeCombate extends StatefulWidget {
   });
 
   @override
-  _InterfazDeCombateState createState() => _InterfazDeCombateState();
+  State<InterfazDeCombate> createState() => _InterfazDeCombateDinamica();
 }
 
-class _InterfazDeCombateState extends State<InterfazDeCombate>
+class _InterfazDeCombateDinamica extends State<InterfazDeCombate>
     implements CombateView {
 
   late CombateController controller;
@@ -96,39 +96,45 @@ class _InterfazDeCombateState extends State<InterfazDeCombate>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: const Text("regresar"),
+      ),
       body: Stack(
         children: [
           Positioned.fill(
             child: Image.asset(
-              "assets/Imagenes/fondoBatalla.png",
+              "assets/Imagenes/fondoBatalla.jpg",
               fit: BoxFit.cover,
             ),
           ),
-
-          Column(
-            children: [
-              const SizedBox(height: 50),
-              Align(
-                alignment: Alignment.topRight,
-                child: Image.asset(
-                  "assets/Imagens/SpritesPokemon",
-                  height: 150,
-                ),
+          Positioned(
+            top: 120,
+            right: 290,
+            child: SizedBox(
+              width: 250,
+              height: 250,
+              child: Image.asset(
+                "assets/Gifs/PsiquicoA.gif",
+                fit: BoxFit.contain,
+              
               ),
-
-              const Spacer(),
-
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: Image.asset(
-                  "assets/Imagenes/SpritesPokemon",
-                  height: 170,
-                ),
+            ),
+          ),  
+          Positioned(
+            bottom: 100,
+            left: 230,
+            child: SizedBox(
+              width: 250,
+              height: 250,
+              child: Image.asset(
+                "assets/Gifs/LuchaB.gif",
+                fit: BoxFit.contain,
+              
               ),
-
-              const SizedBox(height: 40),
-            ],
+            ),
           ),
+        
+      
 
           Align(
             alignment: Alignment.bottomCenter,
