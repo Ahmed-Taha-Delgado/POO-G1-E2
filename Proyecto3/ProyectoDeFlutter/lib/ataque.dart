@@ -1,10 +1,12 @@
-
 class Ataque {
   final String nombre;
   final String tipo;
-  final int potencia;
+  int potencia;
   final int prioridad;
-  final String clase;
+  final String clase; 
+
+  final String? estadoSecundario;     
+  final double? probabilidadEstado;  
 
   Ataque({
     required this.nombre,
@@ -12,6 +14,8 @@ class Ataque {
     required this.potencia,
     required this.prioridad,
     required this.clase,
+    this.estadoSecundario,
+    this.probabilidadEstado,
   });
 }
 
@@ -21,12 +25,16 @@ class AtaqueFuego extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Fuego',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -36,12 +44,16 @@ class AtaqueHierba extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Hierba',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -51,12 +63,16 @@ class AtaqueNormal extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Normal',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -66,12 +82,16 @@ class AtaqueElectrico extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Electrico',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -81,12 +101,16 @@ class AtaqueAgua extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Agua',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -96,12 +120,16 @@ class AtaqueTierra extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Tierra',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -111,12 +139,16 @@ class AtaqueRoca extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Roca',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -126,12 +158,16 @@ class AtaqueAcero extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Acero',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -141,12 +177,16 @@ class AtaquePsiquico extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Psiquico',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -156,12 +196,16 @@ class AtaqueDragon extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Dragon',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -171,12 +215,16 @@ class AtaqueHada extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Hada',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -186,12 +234,16 @@ class AtaqueSiniestro extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Siniestro',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -201,12 +253,16 @@ class AtaqueFantasma extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Fantasma',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -216,12 +272,16 @@ class AtaqueHielo extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Hielo',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -231,12 +291,16 @@ class AtaqueLucha extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Lucha',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -246,12 +310,16 @@ class AtaqueVolador extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Volador',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -261,12 +329,16 @@ class AtaqueBicho extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Bicho',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
 
@@ -276,11 +348,15 @@ class AtaqueVeneno extends Ataque {
     required int potencia,
     required int prioridad,
     required String clase,
+    String? estadoSecundario,
+    double? probabilidadEstado,
   }) : super(
           nombre: nombre,
           tipo: 'Veneno',
           potencia: potencia,
           prioridad: prioridad,
           clase: clase,
+          estadoSecundario: estadoSecundario,
+          probabilidadEstado: probabilidadEstado,
         );
 }
