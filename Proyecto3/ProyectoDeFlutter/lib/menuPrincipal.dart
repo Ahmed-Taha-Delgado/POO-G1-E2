@@ -3,13 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pokemonpoo/musica.dart';
 import './seleccionarPokemon.dart';
 import 'dart:io';
+import 'archivos.dart';
 
 class MenuPrincipal extends StatefulWidget {
   const MenuPrincipal({super.key});
 
   @override
   State<MenuPrincipal> createState() => _MenuPrincipalDinamico();
-
 }
 
 class _MenuPrincipalDinamico extends State<MenuPrincipal>{
@@ -19,7 +19,10 @@ class _MenuPrincipalDinamico extends State<MenuPrincipal>{
   @override
   void initState() {
     super.initState();
-    Musica().activarMusicaMenu();
+
+    if(musica){
+      Musica().activarMusicaMenu();
+    }
   }
 
   @override
@@ -31,7 +34,7 @@ class _MenuPrincipalDinamico extends State<MenuPrincipal>{
         children: [
           Positioned.fill(
             child: Image.asset(
-                "assets/Imagenes/fondoPrincipal.jpg",
+                "assets/Gifs/fondoPrincipal.gif",
                 fit: BoxFit.cover,
               ),
             ),
@@ -47,12 +50,18 @@ class _MenuPrincipalDinamico extends State<MenuPrincipal>{
                     Icons.catching_pokemon_rounded, "Jugar",Colors.red, (){
                       Navigator.push(
                         context, 
-                        MaterialPageRoute(builder: (context) => VentanaSeleccionarPokemon()));
+                        MaterialPageRoute(builder: (context) => VentanaSeleccionarPokemon(musica: musica)));
                     }),
                   _crearBoton(musica? Icons.music_note : Icons.music_off, "Música", Colors.black, (){ 
                       setState(() {
-                        musica? musica = false : musica = true;
-                        Musica().activarMusicaMenu();
+                        if(musica){
+                          musica = false;
+                          Musica().stop();
+                        }else{
+                          musica = true;
+                          Musica().activarMusicaMenu();
+                        }
+                       
                       });
                     }),
                   _crearBoton(Icons.exit_to_app_rounded, "Salir", Colors.black, (){
@@ -62,16 +71,31 @@ class _MenuPrincipalDinamico extends State<MenuPrincipal>{
               ),
             ),
           ),
+          Positioned(
+            bottom: 20,
+            right: 20,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                botonExtra("Reiniciar niveles", Colors.grey, (){
+                  for(int i=0; i<18; i++){
+                    niveles[i] = 1;
+                  }
+                  sobreEscribir();
+                }),
+              ],
+            ),
+          ),
+        
         ],
       ),
     );
   }
 
-  // Helper para los botones
   Widget _crearBoton(IconData icon, String texto, Color color, VoidCallback onPressed) {
-    return Align( // <--- 1. El Align evita que el ListView estire el botón
-      alignment: Alignment.center, // Lo mantiene centrado
-      child: SizedBox( // <--- 2. Aquí defines el tamaño real que quieres
+    return Align(
+      alignment: Alignment.center,
+      child: SizedBox(
         width: 300, 
         height: 80,
         child: Card(
@@ -91,6 +115,36 @@ class _MenuPrincipalDinamico extends State<MenuPrincipal>{
                     fontWeight: FontWeight.bold,
                     )
                   ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget botonExtra(String texto, Color color, VoidCallback onPressed){
+    return Align(
+      alignment: Alignment.center,
+      child: SizedBox(
+        width: 230, 
+        height: 40,
+        child: Card(
+          elevation: 15,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          child: InkWell(
+            onTap: onPressed,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(width: 15),
+                Text(
+                  texto, 
+                  style: GoogleFonts.pressStart2p(
+                    fontSize: 8, 
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             ),
           ),
