@@ -121,10 +121,7 @@ class _VentanaFinDeCombateDinamica extends State<VentanaFinDeCombate>{
       body: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset(
-              "assets/Gifs/fondoPrincipal.gif",
-              fit: BoxFit.cover,
-            ), 
+            child:imagenExcepcion("assets/Gifs/fondoPrincipal.gif", fit: BoxFit.cover),
           ),
 
           Center(
@@ -178,10 +175,7 @@ class _VentanaFinDeCombateDinamica extends State<VentanaFinDeCombate>{
           children: [
             SizedBox(
               height: 300,
-              child: Image.asset(
-                ruta,
-                fit: BoxFit.contain,
-              ), 
+              child: imagenExcepcion(ruta, fit: BoxFit.contain),
             ),
             
 
@@ -265,6 +259,18 @@ class _VentanaFinDeCombateDinamica extends State<VentanaFinDeCombate>{
           ),
         ),
       ),
+    );
+  }
+  Widget imagenExcepcion(String ruta, {BoxFit fit = BoxFit.contain}) {
+    return Image.asset(
+      ruta,
+      fit: fit,
+      errorBuilder: (context, error, stackTrace) {
+        return Container(
+          alignment: Alignment.center,
+          color: Colors.grey,
+        );
+      },
     );
   }
 }

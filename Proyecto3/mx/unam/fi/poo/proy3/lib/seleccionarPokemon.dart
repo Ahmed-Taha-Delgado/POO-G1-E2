@@ -130,10 +130,8 @@ class _VentanaSeleccionarPokemonDinamica extends State<VentanaSeleccionarPokemon
         
         children: [
           Positioned.fill(
-            child: Image.asset(
-                "assets/Gifs/fondoPrincipal.gif",
-                fit: BoxFit.cover,
-              ),
+            child: 
+              imagenExcepcion("assets/Gifs/fondoPrincipal.gif", fit: BoxFit.cover),
             ),
             Center(
               child: Padding(
@@ -499,11 +497,10 @@ class _VentanaSeleccionarPokemonDinamica extends State<VentanaSeleccionarPokemon
             children: [
               
               Expanded(
-                child: Image.asset(
-                  ruta,
-                  fit: BoxFit.contain,
-                ),
+                child: 
+                  imagenExcepcion(ruta, fit: BoxFit.contain),
               ),
+              
 
               const SizedBox(height: 10),
 
@@ -584,6 +581,18 @@ class _VentanaSeleccionarPokemonDinamica extends State<VentanaSeleccionarPokemon
           ),
         ),
       ),
+    );
+  }
+  Widget imagenExcepcion(String ruta, {BoxFit fit = BoxFit.contain}) {
+    return Image.asset(
+      ruta,
+      fit: fit,
+      errorBuilder: (context, error, stackTrace) {
+        return Container(
+          alignment: Alignment.center,
+          color: Colors.grey,
+        );
+      },
     );
   }
 }

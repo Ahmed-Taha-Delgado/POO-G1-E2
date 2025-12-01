@@ -16,6 +16,10 @@ class CombateController {
   final Pokemon jugador;
   final Pokemon enemigo;
 
+
+  final double vidaMaximaJugador;
+  final double vidaMaximaEnemigo;
+
   final bool musica;
 
   bool _turnoEnCurso = false;
@@ -27,7 +31,9 @@ class CombateController {
     required this.jugador,
     required this.enemigo,
     required this.musica,
-  });
+  }) : vidaMaximaJugador = jugador.vida, 
+       vidaMaximaEnemigo = enemigo.vida;
+  
 
   void iniciarCombate(Pokemon pokeJugador, Pokemon pokeEnemigo) async{
     vista.mostrarInformacionPokemon(jugador);
@@ -114,8 +120,10 @@ class CombateController {
   }
 
   void curarPorAtaque(Pokemon atacante, Ataque ataque, double danio) {
+  
+
   double porcentaje = 0;
-  double vidaMax=atacante.vida;
+  double vidaMax = (atacante == jugador) ? vidaMaximaJugador : vidaMaximaEnemigo;
   if (ataque.nombre == 'Chupavidas') {
     porcentaje = 0.5; 
   } else if (ataque.nombre == 'Beso drenaje') {
@@ -275,6 +283,9 @@ class CombateController {
 
     aplicarDanioEstados(jugador);
     aplicarDanioEstados(enemigo);
+
+    actualizarEstadosPokemon(jugador);
+    actualizarEstadosPokemon(enemigo);
     
     vista.mostrarSiguienteTurno();
     _turnoEnCurso = false;

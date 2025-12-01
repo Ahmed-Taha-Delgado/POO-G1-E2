@@ -33,10 +33,7 @@ class _MenuPrincipalDinamico extends State<MenuPrincipal>{
       body: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset(
-                "assets/Gifs/fondoPrincipal.gif",
-                fit: BoxFit.cover,
-              ),
+            child: imagenExcepcion("assets/Gifs/fondoPrincipal.gif",fit: BoxFit.cover),
             ),
           Center(
             child: ConstrainedBox(
@@ -45,7 +42,8 @@ class _MenuPrincipalDinamico extends State<MenuPrincipal>{
                 shrinkWrap: true,
                 padding: const EdgeInsets.all(20),
                 children: [
-                  Image.asset('assets/Imagenes/titulo.png'),
+                  
+                  imagenExcepcion('assets/Imagenes/titulo.png'),
                   _crearBoton(
                     Icons.catching_pokemon_rounded, "Jugar",Colors.red, (){
                       Navigator.push(
@@ -150,6 +148,19 @@ class _MenuPrincipalDinamico extends State<MenuPrincipal>{
           ),
         ),
       ),
+    );
+  }
+
+  Widget imagenExcepcion(String ruta, {BoxFit fit = BoxFit.contain}) {
+    return Image.asset(
+      ruta,
+      fit: fit,
+      errorBuilder: (context, error, stackTrace) {
+        return Container(
+          alignment: Alignment.center,
+          color: Colors.grey,
+        );
+      },
     );
   }
 }

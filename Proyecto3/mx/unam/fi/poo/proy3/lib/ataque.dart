@@ -1,4 +1,4 @@
-class Ataque {
+abstract class Ataque {
   final String nombre;
   final String tipo;
   int potencia;

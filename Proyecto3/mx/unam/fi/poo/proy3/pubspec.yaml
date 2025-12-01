@@ -1,4 +1,5 @@
-name: pokemonpoo
+name: mx/unam/fi/poo/proy3/pokemonpoo
+
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -59,7 +60,6 @@ flutter:
   assets:
     - assets/Musica/
     - assets/Imagenes/
-    - assets/Imagenes/SpritesPokemon/
     - assets/Gifs/
 
   # The following line ensures that the Material Icons font is
