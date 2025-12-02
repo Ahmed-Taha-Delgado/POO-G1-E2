@@ -1,0 +1,83 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage[top=1in, left=1.25in, right=1.25in, bottom=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\usepackage{amsmath}
+\addbibresource{bib/referencias.bib}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Reporte del Proyecto 3}
+\rhead{Programación Orientada a Objetos}
+
+\begin{document}
+
+\tableofcontents
+\clearpage
+
+\section{Introducción}
+
+\begin{itemize}
+\item \textbf{Planteamiento del Problema:} Se busca diseñar un programa que busca simular el sistema de combate de los juegos pokemon, integrando parte de la lógica interna del juego original junto con una interfaz gráfica animada acorde al sistema de combates y que permita una correcta interacción con el usuario. 
+
+\item \textbf{Motivación:} En este proyecto aplicaremos todos los temas vistos en el curso para la creación de una aplicación completa en Flutter. Reforzando los temas fundamentales de la programación Orientada a Objetos. Así como la creación de una interfaz gráfica funcional y completa.
+
+\item \textbf{Objetivos:} Crear un programa un programa en Flutter que haga un uso eficiente del encapsulamiento, archivos, clases, polimorfismo e interfaz gráfica para diseñar una aplicación capaz de simular los combates del juego de Pokemon siguiendo parte de la lógica del juego original. 
+
+\end{itemize}
+\section{Marco Teórico}
+\begin{itemize}
+
+    \item \textbf{Patrón de diseño Singleton: }El propósito de este patrón es evitar que sea creado más de un objeto por clase. Esto se logra creando el objeto deseado en una clase y recuperándolo como una instancia estática.
+
+    Si se utiliza el patrón singleton para crear una instancia de una clase, entonces el patrón se asegura de que realmente sólo permanezca con esta instancia única. En los diferentes lenguajes de programación, hay diferentes métodos para lograrlo, pero principalmente se debe impedir que los usuarios creen nuevas instancias. Esto se logra mediante el constructor, declarando el patrón como “privado”. Esto significa que sólo el código en el singleton puede instanciar el singleton en sí mismo, garantizando que sólo un mismo objeto puede llegar al usuario. ~\cite{singleton}
+    
+    \item \textbf{Patrón de diseño MVC: } También llamado patrón modelo-vista-controlador, es un patrón de arquitectura de software en el cual se utilizan tres componentes, separando la lógica de la aplicación de la lógica de la vista, algo muy útil ya que permite realizar cambios en parte de la aplicación sin afectar a las demás, encargándose el modelo de cuestiones como manejo de datos, generalmente, aunque no obligatoriamente, consultando bases de datos para actualizaciones, consultas, búsquedas, etc.
+    \\El controlador es quien se encarga de procesar las solicitudes del usuario, pedirle los datos correspondientes al modelo y de comunicárselos a vista; vista se encarga de la representación visual de los datos, encargándose de toda la interfaz gráfica, no preocupándose el modelo ni el controlador por lo que sucede en esta parte.
+     ~\cite{PatronMVC}
+
+    \item \textbf{Sistema de combate Pokémon: } El sistema de combate de la franquicia Pokémon se basa en enfrentamientos por turnos entre pokemones que poseen atributos numéricos y elementales. Cada Pokémon cuenta con un máximo de 4 movimientos, los cuales pueden causar daño directo, aplicar estados, o modificar estadísticas durante combate. La resolución de cada turno depende de la velocidad de los Pokémon.
+    
+    \textbf{Tabla de tipos: }El sistema se basa en una tabla de efectividades entre tipos, que determina si un ataque es "Superefectivo", "Poco Efectivo" o "Sin efecto". Esto introduce un componente estratégico en cada combate.
+    
+    A partir de estas reglas relativamente sencillas, el sistema puede adaptarse de una manera natural a un diseño de programación orientada a objetos.
+    ~\cite{SistemaCombate}
+    
+\end{itemize}
+
+\section{Aplicación de los objetivos}
+
+\begin{itemize}
+    \item \textbf{Encapsulamiento y paquetes: }El encapsulamiento es aplicado en el uso de las variables, métodos y clases privadas indicadas con '\_' en \textit{Dart}. El proyecto fue empaquetado siguiendo el esquema \textit{Full Qualified Name}, lo que nos permitió mantener un orden en nuestro proyecto.
+    
+    \item \textbf{Herencia y polimorfismo: }Se definieron interfaces y clases abstractas para representar los elementos del juego: Pokemones, ataques e items. Mediante la herencia se crearon sus clases hijas respectivamente lo que nos permitio seguir un mismo modelo y la reutilización de código. El poliformismo permitió almacenar y manipular los objetos creados de estas clases derivadas como objetos de su clase padre, facilitando su manejo.
+    
+    \item \textbf{Excepciones: }Se consideraron las excepciones que se podían generar al intentar abrir una imagen, archivo, GIFs o reproducir música. El uso de \textit{try-catch} nos permitió manejar de manera adecuada cualquier anomalía que se presente en estos casos.
+    
+    \item \textbf{Archivos}: Se creó un archivo de texto que actualiza y guarda el nivel de los pokemones cada vez que uno sube de nivel. Estos niveles son recuperables incluso cuando la aplicación es cerrada.
+    
+    \item \textbf{Hilos}: La aplicación de hilos está dada al usar las funciones asíncronas con retraso. Dentro del juego. Fueron utilizadas al actualizar la interfaz de combate para que se pudieran mostrar los mensajes de daño o efectividad cada vez que un Pokemon sufría daño.
+    
+    \item \textbf{Patrones de diseño: }Se utilizó el patrón de diseño \textbf{Singleton} para la clase \textit{Musica}, asi nos aseguramos que solo exista un objeto de música encargado de la música de todo el programa y evitando música duplicada. Se utilizó el patrón \textbf{MVC} para el diseño general del programa, lo que nos permitió implementar la interfaz gráfica con el sistema de combates sin mucha complicación y con una comunicación sencilla.
+    
+\end{itemize}
+
+
+
+\section{Conclusiones}
+
+Este proyecto nos permitió integrar de manera práctica todos los conceptos estudiados a lo largo del curso de Programación Orientada a Objetos. El desarrollo del juego, nos permitió aplicar conceptos vistos individualmente, en un mismo proyecto, como lo son la herencia y polimorfismo, encapsulamiento y paquetes, archivos, excepciones, funciones asíncronas, patrones de diseño, así como la modularidad del código y la representación del mismo mediante diagramas UML, logrando una implementación completa del proyecto. 
+
+El trabajo en equipo, mediante la herramienta de GitHub, permitió la división de responsabilidades, y un control sobre las versiones del código. Además, ampliamos nuestros conocimientos sobre el lenguaje \textit{Dart} y el framework \textit{Flutter}, entendiendo mejor la estructura y organización de un proyecto real y completo, el manejo de dependencias mediante el archivo \textit{pubspec.yaml}, y la importancia de mantener un orden claro por carpetas y archivos para garantizar la escalabilidad del sistema. 
+
+Finalmente, este proyecto reforzó nuestros conocimientos teóricos sobre la materia de POO, y nos permitió simular un proyecto completo, el trabajo colaborativo y el diseño de aplicaciones.
+
+\section{Referencias}
+\printbibliography
+
+\end{document}
