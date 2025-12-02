@@ -35,7 +35,7 @@
 
     \item \textbf{Patrón de diseño Singleton: }El propósito de este patrón es evitar que sea creado más de un objeto por clase. Esto se logra creando el objeto deseado en una clase y recuperándolo como una instancia estática.
 
-    Si se utiliza el patrón singleton para crear una instancia de una clase, entonces el patrón se asegura de que realmente sólo permanezca con esta instancia única. En los diferentes lenguajes de programación, hay diferentes métodos para lograrlo, pero principalmente se debe impedir que los usuarios creen nuevas instancias. Esto se logra mediante el constructor, declarando el patrón como “privado”. Esto significa que sólo el código en el singleton puede instanciar el singleton en sí mismo, garantizando que sólo un mismo objeto puede llegar al usuario. ~\cite{singleton}
+    Si se utiliza el patrón singleton para crear una instancia de una clase, entonces el patrón se asegura de que realmente sólo permanezca con esta instancia única. En los diferentes lenguajes de programación, hay diferentes métodos para lograrlo, pero principalmente se debe impedir que los usuarios creen nuevas instancias. Esto se logra mediante el constructor, declarando el patrón como 'privado'. Esto significa que sólo el código en el singleton puede instanciar el singleton en sí mismo, garantizando que sólo un mismo objeto puede llegar al usuario. ~\cite{singleton}
     
     \item \textbf{Patrón de diseño MVC: } También llamado patrón modelo-vista-controlador, es un patrón de arquitectura de software en el cual se utilizan tres componentes, separando la lógica de la aplicación de la lógica de la vista, algo muy útil ya que permite realizar cambios en parte de la aplicación sin afectar a las demás, encargándose el modelo de cuestiones como manejo de datos, generalmente, aunque no obligatoriamente, consultando bases de datos para actualizaciones, consultas, búsquedas, etc.
     \\El controlador es quien se encarga de procesar las solicitudes del usuario, pedirle los datos correspondientes al modelo y de comunicárselos a vista; vista se encarga de la representación visual de los datos, encargándose de toda la interfaz gráfica, no preocupándose el modelo ni el controlador por lo que sucede en esta parte.
@@ -43,14 +43,14 @@
 
     \item \textbf{Sistema de combate Pokémon: } El sistema de combate de la franquicia Pokémon se basa en enfrentamientos por turnos entre pokemones que poseen atributos numéricos y elementales. Cada Pokémon cuenta con un máximo de 4 movimientos, los cuales pueden causar daño directo, aplicar estados, o modificar estadísticas durante combate. La resolución de cada turno depende de la velocidad de los Pokémon.
     
-    \textbf{Tabla de tipos: }El sistema se basa en una tabla de efectividades entre tipos, que determina si un ataque es "Superefectivo", "Poco Efectivo" o "Sin efecto". Esto introduce un componente estratégico en cada combate.
+    \textbf{Tabla de tipos: }El sistema se basa en una tabla de efectividades entre tipos, que determina si un ataque es 'Superefectivo', 'Poco Efectivo' o 'Sin efecto'. Esto introduce un componente estratégico en cada combate.
     
     A partir de estas reglas relativamente sencillas, el sistema puede adaptarse de una manera natural a un diseño de programación orientada a objetos.
     ~\cite{SistemaCombate}
     
 \end{itemize}
 
-\section{Desarrollo en serie de pasos}
+    \section{Desarrollo en serie de pasos}
 
 En esta sección describiremos el proceso para construir el juego de Pokémon, desde el planteamiento inicial de la idea, hasta el resultado final y las implementaciones.
 
@@ -146,17 +146,17 @@ En \textbf{main.dart} se establece el título y las dimensiones de la ventana de
 \subsection{\textbf{Vista}}
 
 \subsubsection{\textbf{finDeCombate.dart}}
-Lo que hace \textbf{finDeCombate} es crear y mostrar un widget que indica si el jugador a perdido o ganado, en la parte superior derecha hay dos botones: "Menú principal" y "Volver a jugar". En el centro se muestra la tarjeta del pokemon del jugador, con su nombre, tipo y nivel.
+Lo que hace \textbf{finDeCombate} es crear y mostrar un widget que indica si el jugador a perdido o ganado, en la parte superior derecha hay dos botones: 'Menú principal' y 'Volver a jugar'. En el centro se muestra la tarjeta del pokemon del jugador, con su nombre, tipo y nivel.
 
 \subsubsection{\textbf{interfazDeCombate.dart}}
 En \textbf{interfazDeCombate} se muestra el widget principal que muestra a ambos pokemones junto con sus datos de vida, nivel y estados; asi como los botones mochila u ataques, que mostraran los ataques u objetos con los que se cuentan, para según lo seleccionado, mandar a llamar al método correspondiente de \textit{combate.dart} 
 
 \subsubsection{\textbf{menuPrincipal.dart}}
-Para nuestro \textbf{menuPrincipal.dart} se define el widget principal de la pantalla principal, en este se mostrará un fondo dinámico, una imagen con el título y tres botones los cuáles son: "Jugar", "Música" y "Comida". El primero lleva a la pantalla de selección de pokemon, el segundo apaga o enciende la música y el ultimo botón termina la ejecución.
+Para nuestro \textbf{menuPrincipal.dart} se define el widget principal de la pantalla principal, en este se mostrará un fondo dinámico, una imagen con el título y tres botones los cuáles son: 'Jugar', 'Música' y 'Comida'. El primero lleva a la pantalla de selección de pokemon, el segundo apaga o enciende la música y el ultimo botón termina la ejecución.
 
 \subsubsection{\textbf{seleccionarPokemon.dart}}
 En esta pantalla inicializamos todos los pokemones y se añade el seleccionado a una lista para que no se repita.
-Después definimos un widget llamado "targetaPokemon" que es donde se muestra la información de cada pokemon a elegir. En la parte superior derecha tenemos el botón "Ataques" que muestra los ataques registrados, su daño y los efectos que pueden causar determinados ataques. Cuando se termina la selección de pokemon, junto al botón "Ataques" tenemos al botón "Continuar" que nos lleva a la ventana de Combate.
+Después definimos un widget llamado 'tarjetaPokemon' que es donde se muestra la información de cada pokemon a elegir. En la parte superior derecha tenemos el botón 'Ataques' que muestra los ataques registrados, su daño y los efectos que pueden causar determinados ataques. Cuando se termina la selección de pokemon, junto al botón 'Ataques' tenemos al botón 'Continuar' que nos lleva a la ventana de Combate.
 
 \subsubsection{\textbf{tablaAtaques.dart}}
 Aquí se recupera la información de todos los ataques creados, en una lista que se usará en la construcción del widget ventanaTablaAtaques, la cuál unicamente mostrara dichos datos.
@@ -236,23 +236,6 @@ Para la parte del audio, se usa el paquete audioplayers definido previamente en 
     
 \end{itemize}
 
-\section{Aplicación de los objetivos}
-
-\begin{itemize}
-    \item \textbf{Encapsulamiento y paquetes: }El encapsulamiento es aplicado en el uso de las variables, métodos y clases privadas indicadas con '\_' en \textit{Dart}. El proyecto fue empaquetado siguiendo el esquema \textit{Full Qualified Name}, lo que nos permitió mantener un orden en nuestro proyecto.
-    
-    \item \textbf{Herencia y polimorfismo: }Se definieron interfaces y clases abstractas para representar los elementos del juego: Pokemones, ataques e items. Mediante la herencia se crearon sus clases hijas respectivamente lo que nos permitio seguir un mismo modelo y la reutilización de código. El poliformismo permitió almacenar y manipular los objetos creados de estas clases derivadas como objetos de su clase padre, facilitando su manejo.
-    
-    \item \textbf{Excepciones: }Se consideraron las excepciones que se podían generar al intentar abrir una imagen, archivo, GIFs o reproducir música. El uso de \textit{try-catch} nos permitió manejar de manera adecuada cualquier anomalía que se presente en estos casos.
-    
-    \item \textbf{Archivos}: Se creó un archivo de texto que actualiza y guarda el nivel de los pokemones cada vez que uno sube de nivel. Estos niveles son recuperables incluso cuando la aplicación es cerrada.
-    
-    \item \textbf{Hilos}: La aplicación de hilos está dada al usar las funciones asíncronas con retraso. Dentro del juego. Fueron utilizadas al actualizar la interfaz de combate para que se pudieran mostrar los mensajes de daño o efectividad cada vez que un Pokemon sufría daño.
-    
-    \item \textbf{Patrones de diseño: }Se utilizó el patrón de diseño \textbf{Singleton} para la clase \textit{Musica}, asi nos aseguramos que solo exista un objeto de música encargado de la música de todo el programa y evitando música duplicada. Se utilizó el patrón \textbf{MVC} para el diseño general del programa, lo que nos permitió implementar la interfaz gráfica con el sistema de combates sin mucha complicación y con una comunicación sencilla.
-    
-\end{itemize}
-
 
 \section{Diagramas UML}
 
@@ -264,7 +247,6 @@ Para la parte del audio, se usa el paquete audioplayers definido previamente en 
     \includegraphics[width=0.8\linewidth]{Proyecto3/ReporteLatex/Imagenes/Estatico2.png}
     \caption*{}
 \end{figure}
-
 
 \subsection{Diagramas de secuencia: }
 
@@ -283,6 +265,43 @@ Para la parte del audio, se usa el paquete audioplayers definido previamente en 
     \caption*{Flujo de Combate, Uso de Items y Guardado}
 \end{figure}
 
+
+\clearpage
+                                
+\section{Resultados relevantes}
+
+\textbf{Menú principal:} Es el inicio del juego, contiene los botones para jugar, activar/cancelar música, salir del programa y un pequeño botón en caso de querer reiniciar el sistema de niveles.
+\begin{center}
+    \includegraphics[width=0.95\linewidth]{Proyecto3/ReporteLatex/Imagenes/menuPrincipal.png} 
+\end{center}
+\textbf{Selección de pokemones:} Permite elegir un pokemon para jugar y ver los ataques que hay de cada tipo.
+\begin{center}
+    \includegraphics[width=0.95\linewidth]{Proyecto3/ReporteLatex/Imagenes/seleccionarPokemon.png}
+\end{center}
+\clearpage
+\textbf{Tabla de ataques:} Permite ver los ataques por tipo, su potencia y si pueden generar algún efecto.
+\begin{center}
+    \includegraphics[width=0.95\linewidth]{Proyecto3/ReporteLatex/Imagenes/tablaAtaques.png}
+\end{center}
+\textbf{Combate:} Interfaz de combate, donde se puede visualizar vida, estado y turno del pokemon. En su turno se puede atacar o elegir un objeto de la mochila.
+\begin{center}
+    \includegraphics[width=0.95\linewidth]{Proyecto3/ReporteLatex/Imagenes/batalla.png}
+\end{center}
+\clearpage
+\textbf{Ataques y mochila:} Botones despegables que permiten elegir el ataque u objeto a usar en su turno. Los ataques cambian según el pokemon y los objetos son elegidos aleatoriamente.
+\begin{center}
+    \includegraphics[width=0.39\linewidth]{Proyecto3/ReporteLatex/Imagenes/ataques.png}
+    \includegraphics[width=0.59\linewidth]{Proyecto3/ReporteLatex/Imagenes/mochila.png}
+\end{center}
+\textbf{Fin de batalla: }Ventana de victoria o derrota mostrada al terminar el combate.
+\begin{center}
+    \includegraphics[width=0.95\linewidth]{Proyecto3/ReporteLatex/Imagenes/victoria.png}
+\end{center}  
+
+
+ El sistema desarrollado permitió implementar un combate funcional entre dos Pokémon utilizando Flutter y Dart bajo una estructura inspirada en el patrón MVC. Realizando una buena división entre los trabajos del controlador, la vista y el modelo. Logrando que el controlador del combate coordine de manera adecuada el flujo del turno, determinando qué Pokémon ataca primero según su velocidad o el ataque usado, aplicando daño conforme a la potencia del movimiento seleccionado y mostrando mensajes de efectividad según las relaciones entre tipos; así como el uso de items, la aplicación de estados y la verificación de desmayos.
+
+Las vistas implementadas en Flutter representan de manera correcta los datos enviados por el controlador, actualizando barras de vida, ataques disponibles, animaciones y mensajes de combate. Además, la clase Música funciona como un Singleton que controla globalmente la reproducción de audio dentro de la aplicación, evitando la creación de múltiples reproductores. Finalmente, el módulo Archivos permite guardar y leer los niveles de los Pokémon, confirmando la persistencia de datos. 
 
 \clearpage
 
