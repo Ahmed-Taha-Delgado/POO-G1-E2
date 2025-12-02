@@ -50,6 +50,192 @@
     
 \end{itemize}
 
+\section{Desarrollo en serie de pasos}
+
+En esta sección describiremos el proceso para construir el juego de Pokémon, desde el planteamiento inicial de la idea, hasta el resultado final y las implementaciones.
+
+\subsection{Planeación y organización:}
+
+Empezamos analizando la manera en la que implementaríamos el juego, considerando la interfaz que más nos agradaba, los colores, música, animaciones, las ventanas que tendría, los ataques, efectos y los pokemones. 
+
+Dividimos los archivos \textit{.dart} para facilitar el trabajo colaborativo, así como para mantener ordenado el código y que cada miembro del equipo pudiera trabajar sin generar problemas.
+
+\subsection{Diseño:}
+
+Realizamos la división de tareas para abordar todos los objetivos de la implementación entre todo el equipo.
+
+\subsubsection{Pokemones, ataques y efectos:}
+
+Dos de nosotros se encargaron de realizar toda la implementación de los pokemones, abordando los temas:
+
+\begin{itemize}
+\setlength{\parskip}{0em}
+    \item Un pokemon de cada tipo.
+    \item ataques personalizados.
+    \item efectos al realizar un ataque (envenenamiento, quemadura, sueño, parálisis, congelamiento).
+    \item pociones para curación y anti-efectos.
+    \item efectividad de los movimientos sobre los pokemones según la tabla de tipos.
+    \item prioridad de turno según la velocidad del pokemon y la prioridad del ataque.
+    \item nivel de los pokemones al ganar combates.
+\end{itemize}
+
+\subsubsection{Manejo de archivos, música y diseño:}
+
+Otro de nosotros se encargo de manejar los módulos esenciales del programa:
+
+\begin{itemize}
+\setlength{\parskip}{0em}
+    \item manejo de archivos para almacenar los niveles.
+    \item módulos de música para cada fase del juego, utilizando el patrón de \textit{singleton}.
+    \item manejo de turnos y ataques dentro del combate, utilizando el patrón \textit{MVC}
+\end{itemize}
+
+\subsubsection{Interfaz gráfica y animaciones:}
+
+Los últimos dos se encargaron de la interfaz gráfica:
+
+\begin{itemize}
+\setlength{\parskip}{0em}
+    \item creación de varias ventanas según la fase de juego:
+    \begin{itemize}
+        \item menú principal.
+        \item selección de pokemon.
+        \item tabla de ataques.
+        \item interfaz de combate.
+        \item ventana final de batalla.
+    \end{itemize}
+    \item manejo de gifs, para simular animaciones dentro del juego.
+    \item implementación de botones interactivos.
+\end{itemize}
+
+\subsection{Implementación:}
+
+Esta división de tareas la pudimos juntar gracias al patrón de diseño \textbf{MVC}, que nos permitió juntar la interfaz gráfica con toda la lógica detrás de los pokemones. Organizar y manejar las interacciones del usuario. Y lo más importante de todo, mantener la modularidad del código.
+
+\section{Desarrollo}
+
+Dentro del código que implementamos, se trato de seguir una estructura de patron MVC, haciendo distintos archivos para el modelo, el controlador y la vista; y encargándose cada archivo de cierta parte diferente del programa.
+
+\subsection{\textbf{Controlador}}
+
+
+
+\subsubsection{\textbf{combate.dart}}
+En \textbf{combate.dart} implementamos la clase CombateController que controlará la lógica que ejecutan los pokemones durante la batalla y modificara solo mediante el llamado de métodos de otro \textit{.dart} la información mostrada en la interfaz gráfica. Los métodos que contiene esta clase son: 
+\begin{itemize}
+    \item \textbf{iniciarCombate()} Recibe la información de los pokemon que pelearan.
+    \item\textbf{intentarAplicarEstadoPorAtaque()} Este método se encarga, en caso de ser necesario y de caer en la probabilidad, de aplicar un efecto de estado a un pokemon. 
+    \item \textbf{actualizarEstadosPokemon()} En este método se va evaluando cuanto tiempo lleva el pokemon en ciertos estados para después de cierta cantidad de turnos quitar el estado. 
+    \item \textbf{aplicarDanioEstados()} Aquí se evalua si el pokemon se encuentra bajo un efecto de estado como quemadura o envenenamiento, para calcular una cantidad de daño y aplicarsela antes de avanzar al siguiente turno.
+    \item \textbf{curarPorAtaque()} Este método evalúa si se utilizo un ataque que cura al pokemon que lo usa, curándose un porcentaje del daño realizado, pero evitando que se sobrepase la vida maxima
+    \item \textbf{modificarVelocidadPorAtaque()} Aquí se evalúa si el ataque utilizado modifica de algún modo la velocidad ya sea del enemigo o del propio pokemon, para modificarlas en caso de ser necesario según un porcentaje de las velocidades base.  
+    \item \textbf{puedeAtacar()} Este método evalúa si el pokemon se encuentra bajo algún efecto de estado como sueño o congelamiento para devolver un booleano que se encarga de indicar si puede atacar o no.
+    \item \textbf{verificarParalisis()} En este método se verifica si el pokemon esta paralizado, para calcular la probabilidad de que no se mueva en el turno, en caso de ser necesario.
+    \item \textbf{atacarJugador()} En este método se evalúa el ataque seleccionado para el combate para decidir quien ataca primero según velocidad o prioridad del ataque; verificando al final si los pokemon tienen vida para continuar el combate.
+    \item \textbf{ejecutarAtaque()} En esta función es donde se aplica el daño que realiza cada ataque al pokemon que lo recibe y donde se mandan a llamar los métodos de aplicar estados.
+    \item \textbf{usarObjeto()} Aquí se utilizan objetos de la clase \textit{item} para eliminar efectos de estado o curarse.
+    \item \textbf{turnoEnemigo()} Aquí se escoge un movimiento al azar del pokemon enemigo para utilizarlo en combate.
+    \item \textbf{finalizarCombate()} Aquí se evalúa que pokemon tiene vida igual a cero, para mandar a un cambio de ventana con el dato de si se perdió o gano el combate.
+    \item \textbf{calcularDanio()} Aquí se aplica un multiplicador de daño a la potencia base del ataque a utilizar.
+    \item \textbf{multiplicadorPorTipo()} Aquí se evalúa el tipo de ataque que recibirá el pokemon y el tipo del pokemon, para calcular un multiplicador según la relación entre los tipos.
+\end{itemize}
+
+\subsubsection{\textbf{main.dart}}
+En \textbf{main.dart} se establece el título y las dimensiones de la ventana del programa, principalmente es la función que corre el programa.
+
+\subsection{\textbf{Vista}}
+
+\subsubsection{\textbf{finDeCombate.dart}}
+Lo que hace \textbf{finDeCombate} es crear y mostrar un widget que indica si el jugador a perdido o ganado, en la parte superior derecha hay dos botones: "Menú principal" y "Volver a jugar". En el centro se muestra la tarjeta del pokemon del jugador, con su nombre, tipo y nivel.
+
+\subsubsection{\textbf{interfazDeCombate.dart}}
+En \textbf{interfazDeCombate} se muestra el widget principal que muestra a ambos pokemones junto con sus datos de vida, nivel y estados; asi como los botones mochila u ataques, que mostraran los ataques u objetos con los que se cuentan, para según lo seleccionado, mandar a llamar al método correspondiente de \textit{combate.dart} 
+
+\subsubsection{\textbf{menuPrincipal.dart}}
+Para nuestro \textbf{menuPrincipal.dart} se define el widget principal de la pantalla principal, en este se mostrará un fondo dinámico, una imagen con el título y tres botones los cuáles son: "Jugar", "Música" y "Comida". El primero lleva a la pantalla de selección de pokemon, el segundo apaga o enciende la música y el ultimo botón termina la ejecución.
+
+\subsubsection{\textbf{seleccionarPokemon.dart}}
+En esta pantalla inicializamos todos los pokemones y se añade el seleccionado a una lista para que no se repita.
+Después definimos un widget llamado "targetaPokemon" que es donde se muestra la información de cada pokemon a elegir. En la parte superior derecha tenemos el botón "Ataques" que muestra los ataques registrados, su daño y los efectos que pueden causar determinados ataques. Cuando se termina la selección de pokemon, junto al botón "Ataques" tenemos al botón "Continuar" que nos lleva a la ventana de Combate.
+
+\subsubsection{\textbf{tablaAtaques.dart}}
+Aquí se recupera la información de todos los ataques creados, en una lista que se usará en la construcción del widget ventanaTablaAtaques, la cuál unicamente mostrara dichos datos.
+
+\subsection{\textbf{Modelo}}
+
+\subsubsection{\textbf{ataque.dart}}
+Comenzamos creando la clase Ataque que contiene los atributos de: 
+\begin{itemize}
+\setlength{\parskip}{0em}
+    \item \textbf{Nombre}
+    \item \textbf{Tipo}
+    \item \textbf{Potencia}
+    \item \textbf{Prioridad}
+    \item \textbf{Clase}
+    \item \textbf{Estado secundario}
+    \item \textbf{Probabilidad de estado}
+\end{itemize}
+Después de inicializar el constructor con dichos atributos, se crearon las subclases de ataques para los 18 tipos de pokemon implementados en este proyecto.
+
+\subsubsection{\textbf{archivos.dart}}
+\textbf{archivos.dart} cuenta con tres métodos, encargándose en cada uno de algo distinto, uno intentar crear un archivo, en una ruta segura relacionada al lugar de memoria del juego, para simplemente escribir en distintas lineas el nivel de cada pokemon, otro se encarga de leer el archivo para almacenar en una lista, que se utiliza en otros \textit{.dart} el nivel de cada pokemon, almacenando el nivel de los pokemones al ganar un combate, dentro de esa lista, para luego sobrescribir el archivo según lo que hay en la lista, asegurando que el nivel se guarde aun al cerrar el juego. 
+
+\subsubsection{\textbf{ataques.dart}}
+En \textbf{ataques.dart} se crean 4 objetos de cada subclase de Ataque para cada tipo de pokemon, agregando los datos solicitados por el constructor, según información de los juegos originales.
+
+\subsubsection{\textbf{item.dart}}
+En \textbf{item.dart} creamos la clase abstracta Item que tiene los atributos nombre y descripcion. Además de un método abstracto llamado usar(Pokemon pokemon).
+
+\subsubsection{\textbf{pociones.dart}}
+Aquí implementamos Item y creamos la clase \textbf{Pocion} que curará 20 puntos de vida en el juego, tiene como atributo vidaMaxima, además de los extendidos.\\
+También tenemos las clases: PocionQuitarQuem, PocionQuitarEnven, PocionQuitarCong, PocionQuitarPar y PocionDespertar, cada una la cuál se encargará de quitar los efectos de estado correspondientes.
+
+\subsubsection{\textbf{pokemon.dart}}
+Para la creación de \textbf{pokemon.dart} importamos la clase ataque.dart y después definimos la clase pokemon con los atributos de: \\
+\begin{itemize}
+\setlength{\parskip}{0em}
+    \item \textbf{Nombre}
+    \item \textbf{Nivel}
+    \item \textbf{Tipo}
+    \item \textbf{Vida}
+    \item \textbf{Velocidad}
+    \item \textbf{Estado quemado (booleano)}
+    \item \textbf{Estado congelado (booleano)}
+    \item \textbf{Estado paralizado (booleano)}
+    \item \textbf{Estado envenenado (booleano)}
+    \item \textbf{Estado de sueño (booleano)}
+    \item \textbf{Numero de turnos que duran ciertos estados}
+    \item \textbf{Estado quemado (booleano)}
+    \item \textbf{Ruta para Asset (Gif del pokemon de frente)}
+    \item \textbf{Ruta para Asset (Gif del pokemon de espaldas)}
+    \item \textbf{Lista de ataques}
+    \item \textbf{Variable random (para aleatorizar el nivel del rival y su velocidad)}
+\end{itemize}
+Dichos atributos son pedidos por el constructor. Además se agregaron los métodos: aplicarQuemadura(), aplicarCongelacion(), aplicarParalisis(), aplicarEnvenenamiento(), aplicarSuenio() y generarNivelRival(int nivelBaseJugador).
+
+\subsubsection{\textbf{pokemones.dart}}
+En \textbf{pokemones.dart} inicializamos un pokemon de cata tipo usando los atributos que nos pide el constructor.
+
+\subsubsection{\textbf{musica.dart}}
+Para la parte del audio, se usa el paquete audioplayers definido previamente en el archivo pubspec.yaml. Después, se crea la clase Musica, la cual tiene como atributos instancia única (Singleton) que asegura que no haya audio sobrepuesto o duplicado durante la ejecución del juego. Después contiene una variable reproductor de tipo AudioPlayer, que es el objeto encargado de reproducir los archivos de audio, y una variable booleana estaSonando que permite llevar el control de si actualmente hay música activa. Por último se definieron los métodos: musicaMenu(), musicaBatalla() y musicaVistoria().
+
+\section{Aplicación de los objetivos}
+
+\begin{itemize}
+    \item \textbf{Encapsulamiento y paquetes: }El encapsulamiento es aplicado en el uso de las variables, métodos y clases privadas indicadas con '\_' en \textit{Dart}. El proyecto fue empaquetado siguiendo el esquema \textit{Full Qualified Name}, lo que nos permitió mantener un orden en nuestro proyecto.
+    
+    \item \textbf{Herencia y polimorfismo: }Se definieron interfaces y clases abstractas para representar los elementos del juego: Pokemones, ataques e items. Mediante la herencia se crearon sus clases hijas respectivamente lo que nos permitio seguir un mismo modelo y la reutilización de código. El poliformismo permitió almacenar y manipular los objetos creados de estas clases derivadas como objetos de su clase padre, facilitando su manejo.
+    
+    \item \textbf{Excepciones: }Se consideraron las excepciones que se podían generar al intentar abrir una imagen, archivo, GIFs o reproducir música. El uso de \textit{try-catch} nos permitió manejar de manera adecuada cualquier anomalía que se presente en estos casos.
+    
+    \item \textbf{Archivos}: Se creó un archivo de texto que actualiza y guarda el nivel de los pokemones cada vez que uno sube de nivel. Estos niveles son recuperables incluso cuando la aplicación es cerrada.
+    
+    \item \textbf{Hilos}: La aplicación de hilos está dada al usar las funciones asíncronas con retraso. Dentro del juego. Fueron utilizadas al actualizar la interfaz de combate para que se pudieran mostrar los mensajes de daño o efectividad cada vez que un Pokemon sufría daño.
+    
+    \item \textbf{Patrones de diseño: }Se utilizó el patrón de diseño \textbf{Singleton} para la clase \textit{Musica}, asi nos aseguramos que solo exista un objeto de música encargado de la música de todo el programa y evitando música duplicada. Se utilizó el patrón \textbf{MVC} para el diseño general del programa, lo que nos permitió implementar la interfaz gráfica con el sistema de combates sin mucha complicación y con una comunicación sencilla.
+    
+\end{itemize}
+
 \section{Aplicación de los objetivos}
 
 \begin{itemize}
